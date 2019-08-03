@@ -2,22 +2,44 @@
 
 namespace AdobeConnectClient\Entities;
 
-use DateTimeInterface;
-use DateTimeImmutable;
-use DomainException;
 use AdobeConnectClient\ArrayableInterface;
 use AdobeConnectClient\Helpers\ValueTransform as VT;
-use AdobeConnectClient\Traits\Arrayable as ArrayableTrait;
+use AdobeConnectClient\Traits\Arrayable;
+use AdobeConnectClient\Traits\PropertyCaller;
+use AdobeConnectClient\Traits\Setter;
+use DateTimeImmutable;
+use DateTimeInterface;
+use Exception;
 
 /**
  * Adobe Connect SCO
  *
  * See {@link https://helpx.adobe.com/adobe-connect/webservices/common-xml-elements-attributes.html#type}
  *
+ * @property bool|string|mixed $disabled
+ * @property bool|string|mixed $meetingPodsLayoutsLocked
+ * @property bool|string|mixed $updateLinkedItem
+ * @property string|mixed $icon
+ * @property string|mixed $lang
+ * @property string|mixed $type
+ * @property string|mixed $version
+ * @property string|mixed $description
+ * @property string|mixed $name
+ * @property string|mixed $url_path
+ * @property DateTimeImmutable|string|mixed $date_created
+ * @property DateTimeImmutable|string|mixed $date_modified
+ * @property DateTimeImmutable|string|mixed $date_begin
+ * @property DateTimeImmutable|string|mixed $date_end
+ * @property int|string|mixed $max_retires
+ * @property int|string|mixed $sco_id
+ * @property int|string|mixed $source_sco_id
+ * @property int|string|mixed $display_seq
+ * @property int|string|mixed $folder_id
+ * @property int|string|mixed $accountId
  */
 class SCO implements ArrayableInterface
 {
-    use ArrayableTrait;
+    use Arrayable, Setter, PropertyCaller;
 
     /**
      * A viewable file uploaded to the server.
@@ -71,106 +93,6 @@ class SCO implements ArrayableInterface
     const TYPE_TREE = 'tree';
 
     /**
-     * @var int
-     */
-    protected $accountId = null;
-
-    /**
-     * @var bool
-     */
-    protected $disabled = null;
-
-    /**
-     * @var int
-     */
-    protected $displaySeq = null;
-
-    /**
-     * @var int
-     */
-    protected $folderId = null;
-
-    /**
-     * @var string
-     */
-    protected $icon = null;
-
-    /**
-     * @var string
-     */
-    protected $lang = null;
-
-    /**
-     * @var int
-     */
-    protected $maxRetries = null;
-
-    /**
-     * @var int
-     */
-    protected $scoId = null;
-
-    /**
-     * @var int
-     */
-    protected $sourceScoId = null;
-
-    /**
-     * @var string
-     */
-    protected $type = null;
-
-    /**
-     * @var string
-     */
-    protected $version = null;
-
-    /**
-     * @var DateTimeImmutable
-     */
-    protected $dateCreated = null;
-
-    /**
-     * @var DateTimeImmutable
-     */
-    protected $dateModified = null;
-
-    /**
-     * @var string
-     */
-    protected $description = null;
-
-    /**
-     * @var string
-     */
-    protected $name = null;
-
-    /**
-     * @var string
-     */
-    protected $urlPath = null;
-
-    /**
-     * @var DateTimeImmutable
-     */
-    protected $dateBegin = null;
-
-    /**
-     * @var DateTimeImmutable
-     */
-    protected $dateEnd = null;
-
-    /**
-     * @var bool
-     */
-    protected $meetingPodsLayoutsLocked = null;
-
-    /**
-     * @var bool
-     */
-    protected $updateLinkedItem = null;
-
-    /**
      * Create a new SCO Instance
      *
      * @return SCO
@@ -181,218 +103,6 @@ class SCO implements ArrayableInterface
     }
 
     /**
-     * Get the Account ID
-     *
-     * @return int
-     */
-    public function getAccountId()
-    {
-        return $this->accountId;
-    }
-
-    /**
-     * Get the  disabled indicator
-     *
-     * @return bool
-     */
-    public function getDisabled()
-    {
-        return $this->disabled;
-    }
-
-    /**
-     * Get the display sequence
-     *
-     * @return int
-     */
-    public function getDisplaySeq()
-    {
-        return $this->displaySeq;
-    }
-
-    /**
-     * Get the Folder ID
-     *
-     * @return int
-     */
-    public function getFolderId()
-    {
-        return $this->folderId;
-    }
-
-    /**
-     * Get the icon
-     *
-     * @return string
-     */
-    public function getIcon()
-    {
-        return $this->icon;
-    }
-
-    /**
-     * Get the language
-     *
-     * @return string
-     */
-    public function getLang()
-    {
-        return $this->lang;
-    }
-
-    /**
-     * Get the max retries
-     *
-     * @return int
-     */
-    public function getMaxRetries()
-    {
-        return $this->maxRetries;
-    }
-
-    /**
-     * Get the SCO ID
-     *
-     * @return int
-     */
-    public function getScoId()
-    {
-        return $this->scoId;
-    }
-
-    /**
-     * Get the Source ID
-     *
-     * @return int
-     */
-    public function getSourceScoId()
-    {
-        return $this->sourceScoId;
-    }
-
-    /**
-     * Get the type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * Get the version
-     *
-     * @return string
-     */
-    public function getVersion()
-    {
-        return $this->version;
-    }
-
-    /**
-     * Get the Creation Date
-     *
-     * @return DateTimeImmutable
-     */
-    public function getDateCreated()
-    {
-        return $this->dateCreated;
-    }
-
-    /**
-     * Get the Modified date
-     *
-     * @return DateTimeImmutable
-     */
-    public function getDateModified()
-    {
-        return $this->dateModified;
-    }
-
-    /**
-     * Get the description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * Get the name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Get the URL
-     *
-     * @return string
-     */
-    public function getUrlPath()
-    {
-        return $this->urlPath;
-    }
-
-    /**
-     * Get the time Begins the meeting
-     *
-     * @return DateTimeImmutable
-     */
-    public function getDateBegin()
-    {
-        return $this->dateBegin;
-    }
-
-    /**
-     * Get the time End the meeting
-     *
-     * @return DateTimeImmutable
-     */
-    public function getDateEnd()
-    {
-        return $this->dateEnd;
-    }
-
-    /**
-     * Get the Pod layout locked status
-     *
-     * @return bool
-     */
-    public function getMeetingPodsLayoutsLocked()
-    {
-        return $this->meetingPodsLayoutsLocked;
-    }
-
-    /**
-     * Get the linked item update status
-     *
-     * @return bool
-     */
-    public function getUpdateLinkedItem()
-    {
-        return $this->updateLinkedItem;
-    }
-
-    /**
-     * Set the Account ID
-     *
-     * @param int $accountId The account ID
-     * @return SCO
-     */
-    public function setAccountId($accountId)
-    {
-        $this->accountId = (int) $accountId;
-        return $this;
-    }
-
-    /**
      * Set the disabled status
      *
      * @param bool $disabled
@@ -400,130 +110,7 @@ class SCO implements ArrayableInterface
      */
     public function setDisabled($disabled)
     {
-        $this->disabled = VT::toBool($disabled);
-        return $this;
-    }
-
-    /**
-     * Set the Display Sequence
-     *
-     * @param int $displaySeq
-     * @return SCO
-     */
-    public function setDisplaySeq($displaySeq)
-    {
-        $this->displaySeq = (int) $displaySeq;
-        return $this;
-    }
-
-    /**
-     * Set the Folder ID
-     *
-     * @param int $folderId
-     * @return SCO
-     */
-    public function setFolderId($folderId)
-    {
-        $this->folderId = (int) $folderId;
-        return $this;
-    }
-
-    /**
-     * Set the Icon
-     *
-     * @param string $icon
-     * @return SCO
-     */
-    public function setIcon($icon)
-    {
-        $this->icon = (string) $icon;
-        return $this;
-    }
-
-    /**
-     * Set the Language
-     *
-     * @param string $lang
-     * @return SCO
-     */
-    public function setLang($lang)
-    {
-        $this->lang = (string) $lang;
-        return $this;
-    }
-
-    /**
-     * Set the Max retries
-     *
-     * @param int $maxRetries
-     * @return SCO
-     */
-    public function setMaxRetries($maxRetries)
-    {
-        $this->maxRetries = (int) $maxRetries;
-        return $this;
-    }
-
-    /**
-     * Set the SCO ID
-     *
-     * @param int $scoId
-     * @return SCO
-     */
-    public function setScoId($scoId)
-    {
-        $this->scoId = (int) $scoId;
-        return $this;
-    }
-
-    /**
-     * Set the Source ID
-     * @param int $sourceScoId
-     * @return SCO
-     */
-    public function setSourceScoId($sourceScoId)
-    {
-        $this->sourceScoId = (int) $sourceScoId;
-        return $this;
-    }
-
-    /**
-     * Set the Type
-     *
-     * @param string $type
-     * @return SCO
-     * @throws DomainException
-     */
-    public function setType($type)
-    {
-        if (!in_array(
-            $type,
-            [
-                self::TYPE_CONTENT,
-                self::TYPE_CURRICULUM,
-                self::TYPE_EVENT,
-                self::TYPE_FOLDER,
-                self::TYPE_LINK,
-                self::TYPE_MEETING,
-                self::TYPE_SESSION,
-                self::TYPE_TREE
-            ]
-        )) {
-            throw new DomainException("{$type} isn't a valid SCO Type");
-        }
-        $this->type = $type;
-        return $this;
-    }
-
-    /**
-     * Set the Version
-     *
-     * @param string $version
-     * @return SCO
-     */
-    public function setVersion($version)
-    {
-        $this->version = (string) $version;
+        $this->attributes['disabled'] = VT::toBool($disabled);
         return $this;
     }
 
@@ -532,10 +119,11 @@ class SCO implements ArrayableInterface
      *
      * @param DateTimeInterface|string $dateCreated
      * @return SCO
+     * @throws Exception
      */
     public function setDateCreated($dateCreated)
     {
-        $this->dateCreated = VT::toDateTimeImmutable($dateCreated);
+        $this->attributes['dateCreated'] = VT::toDateTimeImmutable($dateCreated);
         return $this;
     }
 
@@ -544,46 +132,11 @@ class SCO implements ArrayableInterface
      *
      * @param DateTimeInterface|string $dateModified
      * @return SCO
+     * @throws Exception
      */
     public function setDateModified($dateModified)
     {
-        $this->dateModified = VT::toDateTimeImmutable($dateModified);
-        return $this;
-    }
-
-    /**
-     * Set the Description
-     *
-     * @param string $description
-     * @return SCO
-     */
-    public function setDescription($description)
-    {
-        $this->description = (string) $description;
-        return $this;
-    }
-
-    /**
-     * Set the Name
-     *
-     * @param string $name
-     * @return SCO
-     */
-    public function setName($name)
-    {
-        $this->name = (string) $name;
-        return $this;
-    }
-
-    /**
-     * Set the URL
-     *
-     * @param string $urlPath
-     * @return SCO
-     */
-    public function setUrlPath($urlPath)
-    {
-        $this->urlPath = (string) $urlPath;
+        $this->attributes['dateModified'] = VT::toDateTimeImmutable($dateModified);
         return $this;
     }
 
@@ -592,10 +145,11 @@ class SCO implements ArrayableInterface
      *
      * @param DateTimeInterface|string $dateBegin
      * @return SCO
+     * @throws Exception
      */
     public function setDateBegin($dateBegin)
     {
-        $this->dateBegin = VT::toDateTimeImmutable($dateBegin);
+        $this->attributes['dateBegin'] = VT::toDateTimeImmutable($dateBegin);
         return $this;
     }
 
@@ -604,10 +158,11 @@ class SCO implements ArrayableInterface
      *
      * @param DateTimeInterface|string $dateEnd
      * @return SCO
+     * @throws Exception
      */
     public function setDateEnd($dateEnd)
     {
-        $this->dateEnd = VT::toDateTimeImmutable($dateEnd);
+        $this->attributes["dateEnd"] = VT::toDateTimeImmutable($dateEnd);
         return $this;
     }
 
@@ -619,7 +174,7 @@ class SCO implements ArrayableInterface
      */
     public function setMeetingPodsLayoutsLocked($meetingPodsLayoutsLocked)
     {
-        $this->meetingPodsLayoutsLocked = VT::toBool($meetingPodsLayoutsLocked);
+        $this->attributes['meetingPodsLayoutsLocked'] = VT::toBool($meetingPodsLayoutsLocked);
         return $this;
     }
 
@@ -631,7 +186,17 @@ class SCO implements ArrayableInterface
      */
     public function setUpdateLinkedItem($updateLinkedItem)
     {
-        $this->updateLinkedItem = VT::toBool($updateLinkedItem);
+        $this->attributes['updateLinkedItem'] = VT::toBool($updateLinkedItem);
         return $this;
+    }
+
+    /**
+     * get the linked item status
+     *
+     * @return bool
+     */
+    public function getUpdateLinkedItem()
+    {
+        return isset($this->attributes["updateLinkedItem"]) ? $this->attributes["updateLinkedItem"] : false;
     }
 }
