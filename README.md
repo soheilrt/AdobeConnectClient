@@ -50,7 +50,7 @@ $sco->class_attribute="value 4";
 
 //save data in class's `attributes` property with the name `classattribute`
 $sco->classattribute="data 5";
-$sco->Classaatribute="data 6";
+$sco->Classatribute="data 6";
 ```   
 since setting attributes via magic function will return class intance, you can add attributes to the class with chains.
   ```php
