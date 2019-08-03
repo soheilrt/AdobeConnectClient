@@ -4,15 +4,21 @@ namespace AdobeConnectClient\Entities;
 
 use AdobeConnectClient\ArrayableInterface;
 use AdobeConnectClient\Traits\Arrayable;
+use AdobeConnectClient\Traits\PropertyCaller;
+use AdobeConnectClient\Traits\Setter;
 
 /**
  * Adobe Connect Permission
  *
  * See {@link https://helpx.adobe.com/adobe-connect/webservices/common-xml-elements-attributes.html#permission_id}
+ *
+ * @property int|string|mixed $acl_id ACL (Access Control List) ID. Usually a SCO ID or Principal ID.
+ * @property int|string|mixed $permission_id
+ * @property int|string|mixed $principal_id Normally is int, but in special cases is string using the MEETING_* constants
  */
 class Permission implements ArrayableInterface
 {
-    use Arrayable;
+    use Arrayable, Setter, PropertyCaller;
 
     /**
      * Special permission for Meeting
@@ -123,105 +129,8 @@ class Permission implements ArrayableInterface
      */
     const PRINCIPAL_DENIED = 'denied';
 
-    /**
-     * ACL (Access Control List) ID. Usually a SCO ID or Principal ID.
-     * @var int
-     */
-    protected $aclId = null;
-
-    /**
-     * @var string
-     */
-    protected $permissionId = null;
-
-    /**
-     * Normally is int, but in special cases is string using the MEETING_* constants
-     *
-     * @var int|string
-     */
-    protected $principalId = null;
-
-    /**
-     * Returns a new Permission instance
-     *
-     * @return Permission
-     */
     public static function instance()
     {
         return new static;
-    }
-
-    /**
-     * Get the ACL ID.
-     *
-     * ACL (Access Control List) ID. Usually a SCO ID or Principal ID.
-     *
-     * @return int
-     */
-    public function getAclId()
-    {
-        return $this->aclId;
-    }
-
-    /**
-     * Get the Permission ID.
-     *
-     * @see PRINCIPAL_* constants
-     *
-     * @return string
-     */
-    public function getPermissionId()
-    {
-        return $this->permissionId;
-    }
-
-    /**
-     * The Principal ID or Special Permission using MEETING_* constants
-     *
-     * @return int|string
-     */
-    public function getPrincipalId()
-    {
-        return $this->principalId;
-    }
-
-    /**
-     * Set the ACL ID. It is a SCO ID or Principal ID.
-     *
-     * @param int $aclId
-     * @return Permission
-     */
-    public function setAclId($aclId)
-    {
-        $this->aclId = $aclId;
-        return $this;
-    }
-
-    /**
-     * The Permission ID.
-     *
-     * @see PRINCIPAL_* constants
-     *
-     * @param string $permissionId
-     * @return Permission
-     */
-    public function setPermissionId($permissionId)
-    {
-        $this->permissionId = $permissionId;
-        return $this;
-    }
-
-    /**
-     * Set the Principal ID.
-     *
-     * If setting a Meeting this can be a special permission using MEETING_* constants
-     *
-     * @param int|string $principalId
-     * @return Permission
-     */
-    public function setPrincipalId($principalId)
-    {
-        $this->principalId = $principalId;
-        return $this;
     }
 }

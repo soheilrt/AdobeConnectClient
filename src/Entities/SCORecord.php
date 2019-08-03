@@ -2,494 +2,95 @@
 
 namespace AdobeConnectClient\Entities;
 
-use DateTimeImmutable;
+use AdobeConnectClient\Helpers\ValueTransform as VT;
+use AdobeConnectClient\Traits\PropertyCaller;
+use AdobeConnectClient\Traits\Setter;
 use DateInterval;
+use DateTimeImmutable;
 use Exception;
 use InvalidArgumentException;
-use AdobeConnectClient\Helpers\ValueTransform as VT;
 
 /**
  * The recording archive from a SCO
+ *
+ * @property int|string|mixed $sco_id
+ * @property int|string|mixed $source_sco_id
+ * @property int|string|mixed $folder_id
+ * @property int|string|mixed $display_seq
+ * @property int|string|mixed $job_id
+ * @property int|string|mixed $account_id
+ * @property int|string|mixed $encoder_service_job_progress
+ * @property int|string|mixed $no_of_downloads
+ * @property int|string|mixed $file_name
+ * @property string|mixed $type
+ * @property string|mixed $icon
+ * @property string|mixed $job_status
+ * @property string|mixed $name
+ * @property string|mixed $url_path
+ * @property bool|string|mixed $is_folder
+ * @property DateTimeImmutable|mixed $date_begin
+ * @property DateTimeImmutable|mixed $date_end
+ * @property DateTimeImmutable|mixed $date_created
+ * @property DateTimeImmutable|mixed $date_modified
+ * @property DateInterval|mixed $duration
  */
 class SCORecord
 {
-    /**
-     * @var int
-     */
-    protected $scoId = null;
-
-    /**
-     * @var int
-     */
-    protected $sourceScoId = null;
-
-    /**
-     * @var int
-     */
-    protected $folderId = null;
-
-    /**
-     * @var string
-     */
-    protected $type = null;
-
-    /**
-     * @var string
-     */
-    protected $icon = null;
-
-    /**
-     * @var int
-     */
-    protected $displaySeq = null;
-
-    /**
-     * @var int
-     */
-    protected $jobId = null;
-
-    /**
-     * @var int
-     */
-    protected $accountId = null;
-
-    /**
-     * @var string
-     */
-    protected $jobStatus = null;
-
-    /**
-     * @var int
-     */
-    protected $encoderServiceJobProgress = null;
-
-    /**
-     * @var bool
-     */
-    protected $isFolder = null;
-
-    /**
-     * @var int
-     */
-    protected $noOfDownloads = null;
-
-    /**
-     * @var string
-     */
-    protected $name = null;
-
-    /**
-     * @var string
-     */
-    protected $urlPath = null;
-
-    /**
-     * @var DateTimeImmutable
-     */
-    protected $dateBegin = null;
-
-    /**
-     * @var DateTimeImmutable
-     */
-    protected $dateEnd= null;
-
-    /**
-     * @var DateTimeImmutable
-     */
-    protected $dateCreated= null;
-
-    /**
-     * @var DateTimeImmutable
-     */
-    protected $dateModified= null;
-
-    /**
-     * @var DateInterval
-     */
-    protected $duration = null;
-
-    /**
-     * @var string
-     */
-    protected $filename = null;
-
-    /**
-     * Get the ID
-     *
-     * @return int
-     */
-    public function getScoId()
-    {
-        return $this->scoId;
-    }
-
-    /**
-     * Get the Source ID
-     *
-     * @return int
-     */
-    public function getSourceScoId()
-    {
-        return $this->sourceScoId;
-    }
-
-    /**
-     * Get the Folder ID
-     * @return int
-     */
-    public function getFolderId()
-    {
-        return $this->folderId;
-    }
-
-    /**
-     * Get the Type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * Get the Icon
-     *
-     * @return string
-     */
-    public function getIcon()
-    {
-        return $this->icon;
-    }
-
-    /**
-     * Get the Display Sequence
-     *
-     * @return int
-     */
-    public function getDisplaySeq()
-    {
-        return $this->displaySeq;
-    }
-
-    /**
-     * Get the Job ID
-     *
-     * @return int
-     */
-    public function getJobId()
-    {
-        return $this->jobId;
-    }
-
-    /**
-     * Get the Account ID
-     *
-     * @return int
-     */
-    public function getAccountId()
-    {
-        return $this->accountId;
-    }
-
-    /**
-     * Get the Job Status
-     *
-     * @return string
-     */
-    public function getJobStatus()
-    {
-        return $this->jobStatus;
-    }
-
-    /**
-     * Get the Encoder Service Progress
-     *
-     * @return int
-     */
-    public function getEncoderServiceJobProgress()
-    {
-        return $this->encoderServiceJobProgress;
-    }
-
-    /**
-     * Indicates if is a Folder
-     *
-     * @return bool
-     */
-    public function getIsFolder()
-    {
-        return $this->isFolder;
-    }
-
-    /**
-     * Get the Number of Downloads
-     *
-     * @return int
-     */
-    public function getNoOfDownloads()
-    {
-        return $this->noOfDownloads;
-    }
-
-    /**
-     * Get the Name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Get the URL
-     *
-     * @return string
-     */
-    public function getUrlPath()
-    {
-        return $this->urlPath;
-    }
-
-    /**
-     * Get the Begin date
-     *
-     * @return DateTimeImmutable
-     */
-    public function getDateBegin()
-    {
-        return $this->dateBegin;
-    }
-
-    /**
-     * Get the End date
-     *
-     * @return DateTimeImmutable
-     */
-    public function getDateEnd()
-    {
-        return $this->dateEnd;
-    }
-
-    /**
-     * Get the Created date
-     *
-     * @return DateTimeImmutable
-     */
-    public function getDateCreated()
-    {
-        return $this->dateCreated;
-    }
-
-    /**
-     * Get the Modified date
-     *
-     * @return DateTimeImmutable
-     */
-    public function getDateModified()
-    {
-        return $this->dateModified;
-    }
-
-    /**
-     * Get the Duration
-     *
-     * @return DateInterval
-     */
-    public function getDuration()
-    {
-        return $this->duration;
-    }
-
-    /**
-     * Get the Filename
-     *
-     * @return string
-     */
-    public function getFilename()
-    {
-        return $this->filename;
-    }
-
-    /**
-     * Set the SCO ID
-     *
-     * @param int $scoId
-     */
-    public function setScoId($scoId)
-    {
-        $this->scoId = (int) $scoId;
-    }
-
-    /**
-     * Set the Source ID
-     *
-     * @param int $sourceScoId
-     */
-    public function setSourceScoId($sourceScoId)
-    {
-        $this->sourceScoId = (int) $sourceScoId;
-    }
-
-    /**
-     * Set the Folder ID
-     *
-     * @param int $folderId
-     */
-    public function setFolderId($folderId)
-    {
-        $this->folderId = (int) $folderId;
-    }
-
-    /**
-     * Set the Type
-     *
-     * @param string $type
-     */
-    public function setType($type)
-    {
-        $this->type = (string) $type;
-    }
-
-    /**
-     * Set the Icon
-     *
-     * @param string $icon
-     */
-    public function setIcon($icon)
-    {
-        $this->icon = (string) $icon;
-    }
-
-    /**
-     * Set the Display sequence
-     *
-     * @param int $displaySeq
-     */
-    public function setDisplaySeq($displaySeq)
-    {
-        $this->displaySeq = (int) $displaySeq;
-    }
-
-    /**
-     * Set the Job ID
-     *
-     * @param int $jobId
-     */
-    public function setJobId($jobId)
-    {
-        $this->jobId = (int) $jobId;
-    }
-
-    /**
-     * Set the Account ID
-     *
-     * @param int $accountId
-     */
-    public function setAccountId($accountId)
-    {
-        $this->accountId = (int) $accountId;
-    }
-
-    /**
-     * Set the Job Status
-     *
-     * @param string $jobStatus
-     */
-    public function setJobStatus($jobStatus)
-    {
-        $this->jobStatus = (string) $jobStatus;
-    }
-
-    /**
-     * Set the Encoder Service Progress
-     *
-     * @param int $encoderServiceJobProgress
-     */
-    public function setEncoderServiceJobProgress($encoderServiceJobProgress)
-    {
-        $this->encoderServiceJobProgress = (int) $encoderServiceJobProgress;
-    }
+    use Setter, PropertyCaller;
 
     /**
      * Set if is Folder
      *
      * @param bool $isFolder
+     * @return void
      */
     public function setIsFolder($isFolder)
     {
-        $this->isFolder = VT::toBool($isFolder);
-    }
-
-    /**
-     * Set the Number of Downloads
-     *
-     * @param int $noOfDownloads
-     */
-    public function setNoOfDownloads($noOfDownloads)
-    {
-        $this->noOfDownloads = (int) $noOfDownloads;
-    }
-
-    /**
-     * Set the Name
-     *
-     * @param string $name
-     */
-    public function setName($name)
-    {
-        $this->name = (string) $name;
-    }
-
-    /**
-     * Set the URL
-     *
-     * @param string $urlPath
-     */
-    public function setUrlPath($urlPath)
-    {
-        $this->urlPath = (string) $urlPath;
+        $this->attributes["isFolder"] = VT::toBool($isFolder);
     }
 
     /**
      * Set the Begin date
      *
      * @param string|DateTimeImmutable $dateBegin
+     * @throws Exception
      */
     public function setDateBegin($dateBegin)
     {
-        $this->dateBegin = VT::toDateTimeImmutable($dateBegin);
+        $this->attributes["dateBegin"] = VT::toDateTimeImmutable($dateBegin);
     }
 
     /**
      * Set the End date
      *
      * @param string|DateTimeImmutable $dateEnd
+     * @throws Exception
      */
     public function setDateEnd($dateEnd)
     {
-        $this->dateEnd = VT::toDateTimeImmutable($dateEnd);
+        $this->attributes["dateEnd"] = VT::toDateTimeImmutable($dateEnd);
     }
 
     /**
      * Set the Created date
      *
      * @param string|DateTimeImmutable $dateCreated
+     * @throws Exception
      */
     public function setDateCreated($dateCreated)
     {
-        $this->dateCreated = VT::toDateTimeImmutable($dateCreated);
+        $this->attributes["dateCreated"] = VT::toDateTimeImmutable($dateCreated);
     }
 
     /**
      * Set the Modified date
      *
      * @param string|DateTimeImmutable $dateModified
+     * @throws Exception
      */
     public function setDateModified($dateModified)
     {
-        $this->dateModified = VT::toDateTimeImmutable($dateModified);
+        $this->attributes["dateModified"] = VT::toDateTimeImmutable($dateModified);
     }
 
     /**
@@ -503,17 +104,7 @@ class SCORecord
         if (is_string($duration)) {
             $duration = $this->timeStringToDateInterval($duration);
         }
-        $this->duration = $duration;
-    }
-
-    /**
-     * Set the File name
-     *
-     * @param string $filename
-     */
-    public function setFilename($filename)
-    {
-        $this->filename = (string) $filename;
+        $this->attributes["duration"] = $duration;
     }
 
     /**

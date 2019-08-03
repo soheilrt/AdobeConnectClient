@@ -2,20 +2,49 @@
 
 namespace AdobeConnectClient\Entities;
 
-use DomainException;
 use AdobeConnectClient\ArrayableInterface;
-use AdobeConnectClient\Helpers\ValueTransform as VT;
 use AdobeConnectClient\Helpers\StringCaseTransform as SCT;
+use AdobeConnectClient\Helpers\ValueTransform as VT;
+use AdobeConnectClient\Traits\PropertyCaller;
+use AdobeConnectClient\Traits\Setter;
+use DomainException;
 
 /**
  * Adobe Connect Principal
  *
  * See {@link https://helpx.adobe.com/adobe-connect/webservices/common-xml-elements-attributes.html#type}
  *
+ * @property int|string|mixed $name
+ * @property int|string|mixed $display_uid
+ * @property int|string|mixed $principal_id
+ * @property int|string|mixed $training_group_id
+ * @property int|string|mixed $account_id
+ *
+ *
+ * @property string|mixed $login
+ * @property string|mixed $type See {@link https://helpx.adobe.com/adobe-connect/webservices/common-xml-elements-attributes.html#type}
+ * @property string|mixed $permission_id @see Permission::PRINCIPAL_* constants
+ * @property string|mixed $description  The new group’s description. Use only when creating a new group.
+ * @property string|mixed $email Only for user
+ * @property string|mixed $first_name Only for user
+ * @property string|mixed $last_name Only for user
+ * @property string|mixed $password Only on create a user
+ *
+ *
+ * @property bool|string|mixed $is_primary
+ * @property bool|string|mixed $has_children On create: If the principal is a group, use true. If the principal is a user, use false.
+ * @property bool|string|mixed $is_ecommerece
+ * @property bool|string|mixed $is_hidden
+ * @property bool|string|mixed $disabled
+ * @property bool|string|mixed $send_email  only on create a user
+ * @property bool|string|mixed $is_member only on create a user . Indicates if the user is a member of the group (@see \AdobeConnectClient\Commands\PrincipalList)
+ *
+ *
  * @todo Maybe a factory for the differents types?
  */
 class Principal implements ArrayableInterface
 {
+    use Setter, PropertyCaller;
     /**
      * The built-in group Administrators, for Adobe Connect server Administrators.
      * @var string
@@ -106,125 +135,6 @@ class Principal implements ArrayableInterface
      */
     const TYPE_USER = 'user';
 
-    /**
-     * @var string
-     */
-    protected $name = null;
-
-    /**
-     * @var string
-     */
-    protected $login = null;
-
-    /**
-     * @var int
-     */
-    protected $displayUid = null;
-
-    /**
-     * @var int
-     */
-    protected $principalId = null;
-
-    /**
-     * @var bool
-     */
-    protected $isPrimary = null;
-
-    /**
-     * See {@link https://helpx.adobe.com/adobe-connect/webservices/common-xml-elements-attributes.html#type}
-     *
-     * @var string
-     */
-    protected $type = null;
-
-    /**
-     * On create: If the principal is a group, use true. If the principal is a user, use false.
-     *
-     * @var bool
-     */
-    protected $hasChildren = null;
-
-    /**
-     * @see Permission::PRINCIPAL_* constants
-     *
-     * @var string
-     */
-    protected $permissionId = null;
-
-    /**
-     * @var int
-     */
-    protected $trainingGroupId = null;
-
-    /**
-     * @var bool
-     */
-    protected $isEcommerce = null;
-
-    /**
-     * @var bool
-     */
-    protected $isHidden = null;
-
-    /**
-     * The new group’s description. Use only when creating a new group.
-     *
-     * @var string
-     */
-    protected $description = null;
-
-    /**
-     * @var int
-     */
-    protected $accountId = null;
-
-    /**
-     * @var bool
-     */
-    protected $disabled = null;
-
-    /**
-     * Only for User
-     *
-     * @var string
-     */
-    protected $email = null;
-
-    /**
-     * Only for User
-     *
-     * @var string
-     */
-    protected $firstName = null;
-
-    /**
-     * Only for User
-     *
-     * @var string
-     */
-    protected $lastName = null;
-
-    /**
-     * Only on create a User
-     *
-     * @var string
-     */
-    protected $password = null;
-
-    /**
-     * Only on create a User
-     *
-     * @var bool
-     */
-    protected $sendEmail = null;
-
-    /**
-     * Indicates if the user is a member of the group (@see \AdobeConnectClient\Commands\PrincipalList)
-     *
-     * @var bool
-     */
-    protected $isMember = null;
 
     /**
      * The fields for create/update a User
@@ -306,199 +216,8 @@ class Principal implements ArrayableInterface
         return $parameters;
     }
 
-    /**
-     * Get the Name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
 
-    /**
-     * Get the Login
-     *
-     * @return string
-     */
-    public function getLogin()
-    {
-        return $this->login;
-    }
 
-    /**
-     * Get the UID
-     *
-     * @return int
-     */
-    public function getDisplayUid()
-    {
-        return $this->displayUid;
-    }
-
-    /**
-     * Get the ID
-     *
-     * @return int
-     */
-    public function getPrincipalId()
-    {
-        return $this->principalId;
-    }
-
-    /**
-     * Indicate if Is Primary
-     *
-     * @return bool
-     */
-    public function getIsPrimary()
-    {
-        return $this->isPrimary;
-    }
-
-    /**
-     * Get the Type
-     *
-     * More info about types see {@link https://helpx.adobe.com/adobe-connect/webservices/common-xml-elements-attributes.html#type}
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * Indicate if Has Children
-     *
-     * @return bool
-     */
-    public function getHasChildren()
-    {
-        return $this->hasChildren;
-    }
-
-    /**
-     * Get the Permission ID
-     *
-     * @see \AdobeConnectClient\Entities\Permission
-     *
-     * @return string
-     */
-    public function getPermissionId()
-    {
-        return $this->permissionId;
-    }
-
-    /**
-     * Get the Training Groupd ID
-     *
-     * @return int
-     */
-    public function getTrainingGroupId()
-    {
-        return $this->trainingGroupId;
-    }
-
-    /**
-     * Indicate if Is E-Commerce
-     *
-     * @return bool
-     */
-    public function getIsEcommerce()
-    {
-        return $this->isEcommerce;
-    }
-
-    /**
-     * Indicate if Is Hidden
-     *
-     * @return bool
-     */
-    public function getIsHidden()
-    {
-        return $this->isHidden;
-    }
-
-    /**
-     * Get the Description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * Get the Account ID
-     *
-     * @return int
-     */
-    public function getAccountId()
-    {
-        return $this->accountId;
-    }
-
-    /**
-     * Indicate if is Disabled
-     *
-     * @return bool
-     */
-    public function getDisabled()
-    {
-        return $this->disabled;
-    }
-
-    /**
-     * Get the E-Mail
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * Get the First Name
-     *
-     * @return string
-     */
-    public function getFirstName()
-    {
-        return $this->firstName;
-    }
-
-    /**
-     * Get the Last Name
-     *
-     * @return string
-     */
-    public function getLastName()
-    {
-        return $this->lastName;
-    }
-
-    /**
-     * Get the Password
-     *
-     * @return string
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    /**
-     * Indicate if will send E-Mail
-     *
-     * @return bool
-     */
-    public function getSendEmail()
-    {
-        return $this->sendEmail;
-    }
 
     /**
      *
@@ -507,41 +226,8 @@ class Principal implements ArrayableInterface
      */
     public function setName($name)
     {
-        $this->name = (string) $name;
+        $this->attributes["name"] = (string) $name;
         $this->fixNameByType();
-        return $this;
-    }
-
-    /**
-     *
-     * @param string $login
-     * @return Principal
-     */
-    public function setLogin($login)
-    {
-        $this->login = (string) $login;
-        return $this;
-    }
-
-    /**
-     *
-     * @param int $displayUid
-     * @return Principal
-     */
-    public function setDisplayUid($displayUid)
-    {
-        $this->displayUid = (int) $displayUid;
-        return $this;
-    }
-
-    /**
-     *
-     * @param int $principalId
-     * @return Principal
-     */
-    public function setPrincipalId($principalId)
-    {
-        $this->principalId = (int) $principalId;
         return $this;
     }
 
@@ -552,7 +238,7 @@ class Principal implements ArrayableInterface
      */
     public function setIsPrimary($isPrimary)
     {
-        $this->isPrimary = VT::toBool($isPrimary);
+        $this->attributes["isPrimary"] = VT::toBool($isPrimary);
         return $this;
     }
 
@@ -605,65 +291,48 @@ class Principal implements ArrayableInterface
      */
     protected function fixNameByType()
     {
-        if ($this->type === self::TYPE_GROUP and empty($this->name) and $this->firstName and $this->lastName) {
-            $this->name = $this->firstName . ' ' . $this->lastName;
+        if ($this->type === self::TYPE_GROUP and
+            !isset($this->attributes["name"]) and
+            isset($this->attributes["firstName"]) and
+            isset($this->attributes["lastName"])) {
+            $this->attributes["name"] = $this->attributes["firstName"]. ' ' . $this->attributes["lastName"];
             return;
         }
 
-        if ($this->type === self::TYPE_USER and empty($this->firstName) and empty($this->lastName) and $this->name ) {
+        if ($this->type === self::TYPE_USER and
+            empty($this->attributes["firstName"]) and
+            empty($this->attributes["lastName"]) and
+            isset($this->attributes["name"]) ) {
+
             $names = explode(' ', $this->name, 2);
 
             if (count($names) !== 2) {
-                $this->firstName = $names[0];
+                $this->first_name = $names[0];
                 return;
             }
 
-            list($this->firstName, $this->lastName) = $names;
+            list($this->attributes["firstName"], $this->attributes["lastName"]) = $names;
         }
     }
 
     /**
-     *
      * @param bool $hasChildren
      * @return Principal
      */
     public function setHasChildren($hasChildren)
     {
-        $this->hasChildren = VT::toBool($hasChildren);
+        $this->attributes["hasChildren"] = VT::toBool($hasChildren);
         return $this;
     }
 
-    /**
-     *
-     * @see \AdobeConnectClient\Entities\Permission
-     * @param string $permissionId
-     * @return Principal
-     */
-    public function setPermissionId($permissionId)
-    {
-        $this->permissionId = (string) $permissionId;
-        return $this;
-    }
 
     /**
-     *
-     * @param int $trainingGroupId
-     * @return Principal
-     */
-    public function setTrainingGroupId($trainingGroupId)
-    {
-        $this->trainingGroupId = (int) $trainingGroupId;
-        return $this;
-    }
-
-    /**
-     *
      * @param bool $isEcommerce
      * @return Principal
      */
     public function setIsEcommerce($isEcommerce)
     {
-        $this->isEcommerce = VT::toBool($isEcommerce);
+        $this->attributes["isEcommerce"] = VT::toBool($isEcommerce);
         return $this;
     }
 
@@ -674,29 +343,7 @@ class Principal implements ArrayableInterface
      */
     public function setIsHidden($isHidden)
     {
-        $this->isHidden = VT::toBool($isHidden);
-        return $this;
-    }
-
-    /**
-     *
-     * @param string $description
-     * @return Principal
-     */
-    public function setDescription($description)
-    {
-        $this->description = (string) $description;
-        return $this;
-    }
-
-    /**
-     *
-     * @param int $accountId
-     * @return Principal
-     */
-    public function setAccountId($accountId)
-    {
-        $this->accountId = $accountId;
+        $this->attributes["isHidden"]= VT::toBool($isHidden);
         return $this;
     }
 
@@ -707,18 +354,7 @@ class Principal implements ArrayableInterface
      */
     public function setDisabled($disabled)
     {
-        $this->disabled = VT::toBool($disabled);
-        return $this;
-    }
-
-    /**
-     *
-     * @param string $email
-     * @return Principal
-     */
-    public function setEmail($email)
-    {
-        $this->email = (string) $email;
+        $this->attributes["disabled"] = VT::toBool($disabled);
         return $this;
     }
 
@@ -729,7 +365,7 @@ class Principal implements ArrayableInterface
      */
     public function setFirstName($firstName)
     {
-        $this->firstName = (string) $firstName;
+        $this->attributes["firstName"] = (string) $firstName;
         $this->fixNameByType();
         return $this;
     }
@@ -741,20 +377,10 @@ class Principal implements ArrayableInterface
      */
     public function setLastName($lastName)
     {
-        $this->lastName = (string) $lastName;
+        $this->attributes["lastName"] = (string) $lastName;
         $this->fixNameByType();
         return $this;
-    }
 
-    /**
-     *
-     * @param string $password
-     * @return Principal
-     */
-    public function setPassword($password)
-    {
-        $this->password = (string) $password;
-        return $this;
     }
 
     /**
@@ -764,23 +390,18 @@ class Principal implements ArrayableInterface
      */
     public function setSendEmail($sendEmail)
     {
-        $this->sendEmail = VT::toBool($sendEmail);
+        $this->attributes["sendEmail"] = VT::toBool($sendEmail);
         return $this;
-    }
 
-    /**
-     * @return bool
-     */
-    public function getIsMember()
-    {
-        return $this->isMember;
     }
 
     /**
      * @param bool $isMember
+     * @return Principal
      */
     public function setIsMember($isMember)
     {
-        $this->isMember = VT::toBool($isMember);
+        $this->attributes["isMember"] = VT::toBool($isMember);
+        return $this;
     }
 }
