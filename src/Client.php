@@ -27,6 +27,7 @@ use AdobeConnectClient\ArrayableInterface as Arrayable;
  * @method SCO scoCreate(Arrayable $sco) Create a SCO
  * @method bool scoUpdate(Arrayable $sco) Update a SCO
  * @method bool scoDelete(int $scoId) Delete a SCO or a Folder
+ * @method SCO[] scoShortcuts(Arrayable $filter = null, Arrayable $sorter = null) Get SCO Shurcuts to SCO diffrent types.
  * @method bool scoMove(int $scoId, int $folderId) Move the SCO to other Folder
  * @method SCO[] scoContents(int $scoId, Arrayable $filter = null, Arrayable $sorter = null) Get the SCO Contents from a folder or from other SCO
  * @method SCORecord[] listRecordings(int $folderId) Provides a list of recordings for a specified folder or SCO

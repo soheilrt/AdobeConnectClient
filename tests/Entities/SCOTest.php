@@ -142,15 +142,6 @@ class SCOTest extends TestCase
         $this->assertEquals(SCO::TYPE_MEETING, $sco->getType());
     }
 
-    public function testTypeInvalid()
-    {
-        $this->expectException(DomainException::class);
-
-        $sco = SCO::instance();
-
-        $sco->setType('invalid type');
-    }
-
     public function testVersion()
     {
         $sco = SCO::instance();

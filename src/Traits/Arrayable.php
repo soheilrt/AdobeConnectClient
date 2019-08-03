@@ -16,18 +16,29 @@ trait Arrayable
      * The keys in hash style: Ex: is-member
      * The values as string
      *
-     * @return string[]
+     * @param bool $trimNull remove null values from array
+     * @return string[][]
      */
-    public function toArray()
+    public function toArray($trimNull = true)
     {
-        $values = [];
-
-        foreach ($this as $prop => $value) {
-            if (!isset($value)) {
-                continue;
-            }
-            $values[SCT::toHyphen($prop)] = VT::toString($value);
+        if (isset($this->attributes) && is_array($this->attributes)){
+            return $this->toArrayHyphen($this->attributes,$trimNull);
         }
-        return $values;
+        return $this->toArrayHyphen($this,$trimNull);
+    }
+
+    private function toArrayHyphen($array, $trimNull)
+    {
+        $hyphen_array = [];
+        foreach ($array as $key => $value) {
+            if ($trimNull && !isset($value)) {
+                continue;
+            } else if (is_array($value)) {
+                $hyphen_array[SCT::toHyphen($key)] = $this->toArrayHyphen($value, $trimNull);
+            } else {
+                $hyphen_array[SCT::toHyphen($key)] = VT::toString($value);
+            }
+        }
+        return $hyphen_array;
     }
 }

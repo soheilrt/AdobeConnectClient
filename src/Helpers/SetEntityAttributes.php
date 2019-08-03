@@ -23,11 +23,7 @@ abstract class SetEntityAttributes
                 continue;
             }
 
-            $attributeSetMethod = 'set' . SCT::toUpperCamelCase($attr);
-
-            if (method_exists($object, $attributeSetMethod)) {
-                $object->$attributeSetMethod($value);
-            }
+            $object->$attr=$value;
         }
     }
 }
