@@ -2,7 +2,7 @@
 
 namespace AdobeConnectClient\Commands;
 
-use AdobeConnectClient\Command;
+use AdobeConnectClient\Abstracts\Command;
 
 /**
  * Ends the session

@@ -3,7 +3,7 @@
 namespace AdobeConnectClient\Tests;
 
 use AdobeConnectClient\Parameter;
-use AdobeConnectClient\ArrayableInterface;
+use AdobeConnectClient\Contracts\ArrayableInterface;
 use PHPUnit\Framework\TestCase;
 
 class ParameterTest extends TestCase

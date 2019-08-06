@@ -3,7 +3,7 @@
 namespace AdobeConnectClient\Tests;
 
 use AdobeConnectClient\Sorter;
-use AdobeConnectClient\ArrayableInterface;
+use AdobeConnectClient\Contracts\ArrayableInterface;
 use PHPUnit\Framework\TestCase;
 
 class SorterTest extends TestCase

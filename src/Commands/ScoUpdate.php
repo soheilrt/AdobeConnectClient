@@ -2,8 +2,8 @@
 
 namespace AdobeConnectClient\Commands;
 
-use AdobeConnectClient\Command;
-use AdobeConnectClient\ArrayableInterface;
+use AdobeConnectClient\Abstracts\Command;
+use AdobeConnectClient\Contracts\ArrayableInterface;
 use AdobeConnectClient\Converter\Converter;
 use AdobeConnectClient\Exceptions\InvalidException;
 use AdobeConnectClient\Helpers\StatusValidate;

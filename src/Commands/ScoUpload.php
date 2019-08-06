@@ -4,7 +4,7 @@ namespace AdobeConnectClient\Commands;
 
 use SplFileInfo;
 use InvalidArgumentException;
-use AdobeConnectClient\Command;
+use AdobeConnectClient\Abstracts\Command;
 use AdobeConnectClient\Filter;
 use AdobeConnectClient\Entities\SCO;
 use AdobeConnectClient\Converter\Converter;

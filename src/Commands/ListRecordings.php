@@ -2,7 +2,7 @@
 
 namespace AdobeConnectClient\Commands;
 
-use AdobeConnectClient\Command;
+use AdobeConnectClient\Abstracts\Command;
 use AdobeConnectClient\Entities\SCORecord;
 use AdobeConnectClient\Converter\Converter;
 use AdobeConnectClient\Helpers\StatusValidate;

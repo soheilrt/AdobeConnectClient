@@ -2,10 +2,9 @@
 
 namespace AdobeConnectClient\Commands;
 
-use AdobeConnectClient\Command;
-use AdobeConnectClient\ArrayableInterface;
+use AdobeConnectClient\Abstracts\Command;
+use AdobeConnectClient\Contracts\ArrayableInterface;
 use AdobeConnectClient\Converter\Converter;
-use AdobeConnectClient\Filter;
 use AdobeConnectClient\Helpers\StatusValidate;
 use AdobeConnectClient\Helpers\SetEntityAttributes as FillObject;
 use AdobeConnectClient\Entities\Principal;

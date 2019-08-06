@@ -1,6 +1,6 @@
 <?php
 
-namespace AdobeConnectClient;
+namespace AdobeConnectClient\Abstracts;
 
 /**
  * Adobe Connect's types constants to Content

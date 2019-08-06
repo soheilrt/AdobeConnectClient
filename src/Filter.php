@@ -2,6 +2,7 @@
 
 namespace AdobeConnectClient;
 
+use AdobeConnectClient\Contracts\ArrayableInterface;
 use DateTimeInterface;
 use AdobeConnectClient\Helpers\StringCaseTransform as SCT;
 use AdobeConnectClient\Helpers\ValueTransform as VT;

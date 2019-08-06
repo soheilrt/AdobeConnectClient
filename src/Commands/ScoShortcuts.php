@@ -3,7 +3,7 @@
 
 namespace AdobeConnectClient\Commands;
 
-use AdobeConnectClient\Command;
+use AdobeConnectClient\Abstracts\Command;
 use AdobeConnectClient\Converter\Converter;
 use AdobeConnectClient\Entities\SCO;
 use AdobeConnectClient\Exceptions\InvalidException;

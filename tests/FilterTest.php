@@ -5,7 +5,7 @@ namespace AdobeConnectClient\Tests;
 use DateTime;
 use DateTimeImmutable;
 use AdobeConnectClient\Filter;
-use AdobeConnectClient\ArrayableInterface;
+use AdobeConnectClient\Contracts\ArrayableInterface;
 use PHPUnit\Framework\TestCase;
 
 class FilterTest extends TestCase

@@ -7,7 +7,7 @@ use DateTimeImmutable;
 use DateInterval;
 use DomainException;
 use AdobeConnectClient\Entities\SCO;
-use AdobeConnectClient\ArrayableInterface;
+use AdobeConnectClient\Contracts\ArrayableInterface;
 use PHPUnit\Framework\TestCase;
 
 

@@ -2,6 +2,7 @@
 
 namespace AdobeConnectClient;
 
+use AdobeConnectClient\Contracts\ArrayableInterface;
 use AdobeConnectClient\Helpers\StringCaseTransform as SCT;
 
 /**

@@ -4,7 +4,7 @@ namespace AdobeConnectClient\Tests\Entities;
 
 use DomainException;
 use AdobeConnectClient\Entities\Principal;
-use AdobeConnectClient\ArrayableInterface;
+use AdobeConnectClient\Contracts\ArrayableInterface;
 use PHPUnit\Framework\TestCase;
 
 class PrincipalTest extends TestCase

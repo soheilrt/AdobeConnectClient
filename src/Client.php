@@ -2,6 +2,7 @@
 
 namespace AdobeConnectClient;
 
+use AdobeConnectClient\Abstracts\Command;
 use ReflectionClass;
 use ReflectionException;
 use BadMethodCallException;
@@ -15,7 +16,7 @@ use AdobeConnectClient\Entities\Permission;
 use AdobeConnectClient\Entities\Principal;
 use AdobeConnectClient\Entities\CommonInfo;
 use AdobeConnectClient\Helpers\StringCaseTransform as SCT;
-use AdobeConnectClient\ArrayableInterface as Arrayable;
+use AdobeConnectClient\Contracts\ArrayableInterface as Arrayable;
 
 /**
  * The Client to Adobe Connect API

@@ -1,6 +1,6 @@
 <?php
 
-namespace AdobeConnectClient;
+namespace AdobeConnectClient\Contracts;
 
 /**
  * Grant the items in an array to use in Request

@@ -2,7 +2,7 @@
 
 namespace AdobeConnectClient\Entities;
 
-use AdobeConnectClient\ArrayableInterface;
+use AdobeConnectClient\Contracts\ArrayableInterface;
 use AdobeConnectClient\Helpers\StringCaseTransform as SCT;
 use AdobeConnectClient\Helpers\ValueTransform as VT;
 use AdobeConnectClient\Traits\PropertyCaller;
@@ -253,10 +253,10 @@ class Principal implements ArrayableInterface
      */
     public function setType($type)
     {
-        $this->type = (string) $type;
+        $this->attributes["type"] = (string) $type;
 
         if (!in_array(
-            $this->type,
+            $this->attributes["type"],
             [
                 self::TYPE_ADMINS,
                 self::TYPE_ADMINS_LIMITED,

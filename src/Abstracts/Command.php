@@ -1,7 +1,8 @@
 <?php
 
-namespace AdobeConnectClient;
+namespace AdobeConnectClient\Abstracts;
 
+use AdobeConnectClient\Client;
 use BadMethodCallException;
 use UnexpectedValueException;
 use InvalidArgumentException;
