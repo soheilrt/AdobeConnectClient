@@ -22,6 +22,7 @@ class ScoUpdate extends Command
 
     /**
      * @param ArrayableInterface $sco
+     *
      * @throws InvalidException
      */
     public function __construct(ArrayableInterface $sco)
@@ -38,7 +39,7 @@ class ScoUpdate extends Command
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      *
      * @return bool
      */
@@ -55,6 +56,7 @@ class ScoUpdate extends Command
             )
         );
         StatusValidate::validate($response['status']);
+
         return true;
     }
 }

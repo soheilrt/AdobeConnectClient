@@ -10,7 +10,7 @@ use AdobeConnectClient\Helpers\SetEntityAttributes as FillObject;
 use AdobeConnectClient\Helpers\StatusValidate;
 
 /**
- * Get a list of principals who have permissions to act on a SCO, Principal or Account
+ * Get a list of principals who have permissions to act on a SCO, Principal or Account.
  *
  * More info see {@link https://helpx.adobe.com/adobe-connect/webservices/permissions-info.html}
  */
@@ -22,7 +22,7 @@ class PermissionsInfo extends Command
     protected $parameters;
 
     /**
-     * @param int $aclId SCO ID, Principal ID or Account ID
+     * @param int                     $aclId  SCO ID, Principal ID or Account ID
      * @param ArrayableInterface|null $filter
      * @param ArrayableInterface|null $sorter
      */
@@ -30,11 +30,10 @@ class PermissionsInfo extends Command
         $aclId,
         ArrayableInterface $filter = null,
         ArrayableInterface $sorter = null
-    )
-    {
+    ) {
         $this->parameters = [
             'action' => 'permissions-info',
-            'acl-id' => (int)$aclId,
+            'acl-id' => (int) $aclId,
         ];
 
         if ($filter) {
@@ -47,7 +46,7 @@ class PermissionsInfo extends Command
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      *
      * @return Principal[]
      */
@@ -67,6 +66,7 @@ class PermissionsInfo extends Command
             FillObject::setAttributes($principal, $principalAttributes);
             $principals[] = $principal;
         }
+
         return $principals;
     }
 }

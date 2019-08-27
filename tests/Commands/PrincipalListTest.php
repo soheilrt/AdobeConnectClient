@@ -98,13 +98,13 @@ class PrincipalListTest extends TestCommandBase
 
         $assertsExpected = [
             [
-                'id' => 624526,
-                'isMember' => true
+                'id'       => 624526,
+                'isMember' => true,
             ],
             [
-                'id' => 624550,
-                'isMember' => false
-            ]
+                'id'       => 624550,
+                'isMember' => false,
+            ],
         ];
 
         foreach ($assertsExpected as $index => $expectedItems) {

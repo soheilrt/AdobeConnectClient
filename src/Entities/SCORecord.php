@@ -10,7 +10,7 @@ use Exception;
 use InvalidArgumentException;
 
 /**
- * The recording archive from a SCO
+ * The recording archive from a SCO.
  *
  * @property int|string|mixed $sco_id
  * @property int|string|mixed $source_sco_id
@@ -38,64 +38,70 @@ class SCORecord
     use PropertyCaller;
 
     /**
-     * Set if is Folder
+     * Set if is Folder.
      *
      * @param bool $isFolder
+     *
      * @return void
      */
     public function setIsFolder($isFolder)
     {
-        $this->attributes["isFolder"] = VT::toBool($isFolder);
+        $this->attributes['isFolder'] = VT::toBool($isFolder);
     }
 
     /**
-     * Set the Begin date
+     * Set the Begin date.
      *
      * @param string|DateTimeImmutable $dateBegin
+     *
      * @throws Exception
      */
     public function setDateBegin($dateBegin)
     {
-        $this->attributes["dateBegin"] = VT::toDateTimeImmutable($dateBegin);
+        $this->attributes['dateBegin'] = VT::toDateTimeImmutable($dateBegin);
     }
 
     /**
-     * Set the End date
+     * Set the End date.
      *
      * @param string|DateTimeImmutable $dateEnd
+     *
      * @throws Exception
      */
     public function setDateEnd($dateEnd)
     {
-        $this->attributes["dateEnd"] = VT::toDateTimeImmutable($dateEnd);
+        $this->attributes['dateEnd'] = VT::toDateTimeImmutable($dateEnd);
     }
 
     /**
-     * Set the Created date
+     * Set the Created date.
      *
      * @param string|DateTimeImmutable $dateCreated
+     *
      * @throws Exception
      */
     public function setDateCreated($dateCreated)
     {
-        $this->attributes["dateCreated"] = VT::toDateTimeImmutable($dateCreated);
+        $this->attributes['dateCreated'] = VT::toDateTimeImmutable($dateCreated);
     }
 
     /**
-     * Set the Modified date
+     * Set the Modified date.
      *
      * @param string|DateTimeImmutable $dateModified
+     *
      * @throws Exception
      */
     public function setDateModified($dateModified)
     {
-        $this->attributes["dateModified"] = VT::toDateTimeImmutable($dateModified);
+        $this->attributes['dateModified'] = VT::toDateTimeImmutable($dateModified);
     }
 
     /**
-     * Set the Duration
+     * Set the Duration.
      *
      * @param DateInterval|string $duration String in format hh:mm:ss
+     *
      * @throws InvalidArgumentException
      */
     public function setDuration($duration)
@@ -103,15 +109,17 @@ class SCORecord
         if (is_string($duration)) {
             $duration = $this->timeStringToDateInterval($duration);
         }
-        $this->attributes["duration"] = $duration;
+        $this->attributes['duration'] = $duration;
     }
 
     /**
-     * Converts the time duration string into a \DateInterval
+     * Converts the time duration string into a \DateInterval.
      *
      * @param string $timeString A string like hh:mm:ss
-     * @return DateInterval
+     *
      * @throws InvalidArgumentException
+     *
+     * @return DateInterval
      */
     protected function timeStringToDateInterval($timeString)
     {

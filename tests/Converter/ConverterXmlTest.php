@@ -25,9 +25,9 @@ class ConverterXmlTest extends TestCase
         $connection = new Connection();
 
         $response = $connection->get([
-            'action' => 'list-recordings',
+            'action'    => 'list-recordings',
             'folder-id' => 1,
-            'session' => $connection->getSessionString()
+            'session'   => $connection->getSessionString(),
         ]);
 
         $rawData = ConverterXML::convert($response);

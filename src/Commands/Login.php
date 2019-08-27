@@ -27,14 +27,14 @@ class Login extends Command
     public function __construct($login, $password)
     {
         $this->parameters = [
-            'action' => 'login',
-            'login' => (string)$login,
-            'password' => (string)$password
+            'action'   => 'login',
+            'login'    => (string) $login,
+            'password' => (string) $password,
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      *
      * @return bool
      */
@@ -47,10 +47,12 @@ class Login extends Command
             StatusValidate::validate($responseConverted['status']);
         } catch (NoDataException $e) { // Invalid Login
             $this->client->setSession('');
+
             return false;
         }
         $cookieHeader = HeaderParse::parse($response->getHeader('Set-Cookie'));
         $this->client->setSession($cookieHeader[0]['BREEZESESSION']);
+
         return true;
     }
 }

@@ -23,7 +23,7 @@ class PrincipalCreateTest extends TestCommandBase
     }
 
     /**
-     * Create a new Principal User
+     * Create a new Principal User.
      *
      * @return Principal
      */
@@ -103,7 +103,7 @@ class PrincipalCreateTest extends TestCommandBase
     }
 
     /**
-     * Create a new Principal Group
+     * Create a new Principal Group.
      *
      * @return Principal
      */

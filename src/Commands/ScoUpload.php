@@ -42,10 +42,10 @@ class ScoUpload extends Command
     protected $file;
 
     /**
-     *
-     * @param int $folderId The Folder (SCO ID) owned the file
-     * @param string $resourceName
+     * @param int                  $folderId     The Folder (SCO ID) owned the file
+     * @param string               $resourceName
      * @param SplFileInfo|resource $file
+     *
      * @throws InvalidArgumentException
      */
     public function __construct($folderId, $resourceName, $file)
@@ -53,13 +53,13 @@ class ScoUpload extends Command
         if (!is_resource($file) && !($file instanceof SplFileInfo)) {
             throw new InvalidArgumentException('File need be a valid resource or a SplFileInfo object');
         }
-        $this->folderId = (int)$folderId;
-        $this->resourceName = (string)$resourceName;
+        $this->folderId = (int) $folderId;
+        $this->resourceName = (string) $resourceName;
         $this->file = $file;
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      *
      * @return int|null The Content SCO ID or null if fail
      */
@@ -70,21 +70,22 @@ class ScoUpload extends Command
         $response = Converter::convert(
             $this->client->doPost(
                 [
-                    'file' => $this->file
+                    'file' => $this->file,
                 ],
                 [
-                    'action' => 'sco-upload',
-                    'sco-id' => $sco->getScoId(),
-                    'session' => $this->client->getSession()
+                    'action'  => 'sco-upload',
+                    'sco-id'  => $sco->getScoId(),
+                    'session' => $this->client->getSession(),
                 ]
             )
         );
         StatusValidate::validate($response['status']);
+
         return empty($response['files']) ? null : $sco->getScoId();
     }
 
     /**
-     * Get the SCO content if exists or create one
+     * Get the SCO content if exists or create one.
      *
      * @return SCO
      */
@@ -97,11 +98,12 @@ class ScoUpload extends Command
                 ->equals('name', $this->resourceName)
                 ->equals('type', SCO::TYPE_CONTENT)
         );
+
         return empty($scos) ? $this->createSco() : reset($scos);
     }
 
     /**
-     * Create a SCO content
+     * Create a SCO content.
      *
      * @return SCO
      */

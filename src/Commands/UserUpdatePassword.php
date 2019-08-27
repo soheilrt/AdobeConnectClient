@@ -19,16 +19,16 @@ class UserUpdatePassword extends Command
     protected $parameters;
 
     /**
-     * @param int $userId The Principal Id for user
+     * @param int    $userId      The Principal Id for user
      * @param string $newPassword
      * @param string $oldPassword
      */
     public function __construct($userId, $newPassword, $oldPassword = '')
     {
         $this->parameters = [
-            'action' => 'user-update-pwd',
-            'password' => $newPassword,
-            'user-id' => (int)$userId,
+            'action'          => 'user-update-pwd',
+            'password'        => $newPassword,
+            'user-id'         => (int) $userId,
             'password-verify' => $newPassword,
         ];
 
@@ -38,7 +38,7 @@ class UserUpdatePassword extends Command
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      *
      * @return bool
      */
@@ -50,6 +50,7 @@ class UserUpdatePassword extends Command
             )
         );
         StatusValidate::validate($response['status']);
+
         return true;
     }
 }

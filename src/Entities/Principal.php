@@ -9,7 +9,7 @@ use AdobeConnectClient\Traits\PropertyCaller;
 use DomainException;
 
 /**
- * Adobe Connect Principal
+ * Adobe Connect Principal.
  *
  * See {@link https://helpx.adobe.com/adobe-connect/webservices/common-xml-elements-attributes.html#type}
  *
@@ -18,8 +18,6 @@ use DomainException;
  * @property int|string|mixed $principal_id
  * @property int|string|mixed $training_group_id
  * @property int|string|mixed $account_id
- *
- *
  * @property string|mixed $login
  * @property string|mixed $type See {@link https://helpx.adobe.com/adobe-connect/webservices/common-xml-elements-attributes.html#type}
  * @property string|mixed $permission_id @see Permission::PRINCIPAL_* constants
@@ -28,8 +26,6 @@ use DomainException;
  * @property string|mixed $first_name Only for user
  * @property string|mixed $last_name Only for user
  * @property string|mixed $password Only on create a user
- *
- *
  * @property bool|string|mixed $is_primary
  * @property bool|string|mixed $has_children On create: If the principal is a group, use true. If the principal is a user, use false.
  * @property bool|string|mixed $is_ecommerece
@@ -55,7 +51,9 @@ use DomainException;
  * @method int|string|mixed getAccountId()
  * @method string|mixed|null getLogin()
  * @method string|mixed|null getType() See {
+ *
  * @link https://helpx.adobe.com/adobe-connect/webservices/common-xml-elements-attributes.html#type}
+ *
  * @method string|mixed|null getPermissionId() @see Permission::PRINCIPAL_* constants
  * @method string|mixed|null getDescription() The new group’s description. Use only when creating a new group.
  * @method string|mixed|null getEmail() Only for user
@@ -77,110 +75,125 @@ class Principal implements ArrayableInterface
     use PropertyCaller;
     /**
      * The built-in group Administrators, for Adobe Connect server Administrators.
+     *
      * @var string
      */
     const TYPE_ADMINS = 'admins';
 
     /**
      * The built-in group Administrators, for Adobe Connect server Administrators.
+     *
      * @var string
      */
     const TYPE_ADMINS_LIMITED = 'admins-limited';
 
     /**
      * The built-in group Authors, for authors.
+     *
      * @var string
      */
     const TYPE_AUTHORS = 'authors';
 
     /**
      * The built-in group Training Managers, for training managers.
+     *
      * @var string
      */
     const TYPE_COURSE_ADMINS = 'course-admins';
 
     /**
      * The built-in group Event Managers, for anyone who can create an Adobe Connect meeting.
+     *
      * @var string
      */
     const TYPE_EVENT_ADMINS = 'event-admins';
 
     /**
      * The group of users invited to an event.
+     *
      * @var string
      */
     const TYPE_EVENT_GROUP = 'event-group';
 
     /**
      * All Adobe Connect users.
+     *
      * @var string
      */
     const TYPE_EVERYONE = 'everyone';
 
     /**
      * A group authenticated from an external network.
+     *
      * @var string
      */
     const TYPE_EXTERNAL_GROUP = 'external-group';
 
     /**
      * A user authenticated from an external network.
+     *
      * @var string
      */
     const TYPE_EXTERNAL_USER = 'external-user';
 
     /**
      * A group that a user or Administrator creates.
+     *
      * @var string
      */
     const TYPE_GROUP = 'group';
 
     /**
      * A non-registered user who enters an Adobe Connect meeting room.
+     *
      * @var string
      */
     const TYPE_GUEST = 'guest';
 
     /**
      * The built-in group learners, for users who take courses.
+     *
      * @var string
      */
     const TYPE_LEARNERS = 'learners';
 
     /**
      * The built-in group Meeting Hosts, for Adobe Connect meeting hosts.
+     *
      * @var string
      */
     const TYPE_LIVE_ADMINS = 'live-admins';
 
     /**
      * The built-in group Seminar Hosts, for seminar hosts.
+     *
      * @var string
      */
     const TYPE_SEMINAR_ADMINS = 'seminar-admins';
 
     /**
      * A registered user on the server.
+     *
      * @var string
      */
     const TYPE_USER = 'user';
 
     /**
-     * Returns a new Principal instance
+     * Returns a new Principal instance.
      *
      * @return Principal
      */
     public static function instance()
     {
-        return new static;
+        return new static();
     }
 
     /**
-     * Retrieves all not null attributes in an associative array
+     * Retrieves all not null attributes in an associative array.
      *
      * @return string[] [string => string]
-     * @todo Returns fields for all types
      *
+     * @todo Returns fields for all types
      */
     public function toArray()
     {
@@ -206,11 +219,12 @@ class Principal implements ArrayableInterface
                 $parameters[SCT::toHyphen($field)] = VT::toString($value);
             }
         }
+
         return $parameters;
     }
 
     /**
-     * The fields for create/update a User
+     * The fields for create/update a User.
      *
      * @return string[]
      */
@@ -230,7 +244,7 @@ class Principal implements ArrayableInterface
     }
 
     /**
-     * The fields for create/update a Group
+     * The fields for create/update a Group.
      *
      * @return string[]
      */
@@ -246,14 +260,15 @@ class Principal implements ArrayableInterface
     }
 
     /**
-     *
      * @param string $name
+     *
      * @return Principal
      */
     public function setName($name)
     {
-        $this->attributes["name"] = (string)$name;
+        $this->attributes['name'] = (string) $name;
         $this->fixNameByType();
+
         return $this;
     }
 
@@ -266,37 +281,39 @@ class Principal implements ArrayableInterface
     protected function fixNameByType()
     {
         if ($this->type === self::TYPE_GROUP and
-            !isset($this->attributes["name"]) and
-            isset($this->attributes["firstName"]) and
-            isset($this->attributes["lastName"])) {
-            $this->attributes["name"] = $this->attributes["firstName"] . ' ' . $this->attributes["lastName"];
+            !isset($this->attributes['name']) and
+            isset($this->attributes['firstName']) and
+            isset($this->attributes['lastName'])) {
+            $this->attributes['name'] = $this->attributes['firstName'].' '.$this->attributes['lastName'];
+
             return;
         }
 
         if ($this->type === self::TYPE_USER and
-            empty($this->attributes["firstName"]) and
-            empty($this->attributes["lastName"]) and
-            isset($this->attributes["name"])) {
-
+            empty($this->attributes['firstName']) and
+            empty($this->attributes['lastName']) and
+            isset($this->attributes['name'])) {
             $names = explode(' ', $this->name, 2);
 
             if (count($names) !== 2) {
                 $this->first_name = $names[0];
+
                 return;
             }
 
-            list($this->attributes["firstName"], $this->attributes["lastName"]) = $names;
+            list($this->attributes['firstName'], $this->attributes['lastName']) = $names;
         }
     }
 
     /**
-     *
      * @param bool $isPrimary
+     *
      * @return Principal
      */
     public function setIsPrimary($isPrimary)
     {
-        $this->attributes["isPrimary"] = VT::toBool($isPrimary);
+        $this->attributes['isPrimary'] = VT::toBool($isPrimary);
+
         return $this;
     }
 
@@ -306,15 +323,17 @@ class Principal implements ArrayableInterface
      * More info about types see {@link https://helpx.adobe.com/adobe-connect/webservices/common-xml-elements-attributes.html#type}
      *
      * @param string $type
-     * @return Principal
+     *
      * @throws DomainException
+     *
+     * @return Principal
      */
     public function setType($type)
     {
-        $this->attributes["type"] = (string)$type;
+        $this->attributes['type'] = (string) $type;
 
         if (!in_array(
-            $this->attributes["type"],
+            $this->attributes['type'],
             [
                 self::TYPE_ADMINS,
                 self::TYPE_ADMINS_LIMITED,
@@ -343,91 +362,99 @@ class Principal implements ArrayableInterface
 
     /**
      * @param bool $hasChildren
+     *
      * @return Principal
      */
     public function setHasChildren($hasChildren)
     {
-        $this->attributes["hasChildren"] = VT::toBool($hasChildren);
+        $this->attributes['hasChildren'] = VT::toBool($hasChildren);
+
         return $this;
     }
 
-
     /**
      * @param bool $isEcommerce
+     *
      * @return Principal
      */
     public function setIsEcommerce($isEcommerce)
     {
-        $this->attributes["isEcommerce"] = VT::toBool($isEcommerce);
+        $this->attributes['isEcommerce'] = VT::toBool($isEcommerce);
+
         return $this;
     }
 
     /**
-     *
      * @param bool $isHidden
+     *
      * @return Principal
      */
     public function setIsHidden($isHidden)
     {
-        $this->attributes["isHidden"] = VT::toBool($isHidden);
+        $this->attributes['isHidden'] = VT::toBool($isHidden);
+
         return $this;
     }
 
     /**
-     *
      * @param bool $disabled
+     *
      * @return Principal
      */
     public function setDisabled($disabled)
     {
-        $this->attributes["disabled"] = VT::toBool($disabled);
+        $this->attributes['disabled'] = VT::toBool($disabled);
+
         return $this;
     }
 
     /**
-     *
      * @param string $firstName
+     *
      * @return Principal
      */
     public function setFirstName($firstName)
     {
-        $this->attributes["firstName"] = (string)$firstName;
+        $this->attributes['firstName'] = (string) $firstName;
         $this->fixNameByType();
+
         return $this;
     }
 
     /**
-     *
      * @param string $lastName
+     *
      * @return Principal
      */
     public function setLastName($lastName)
     {
-        $this->attributes["lastName"] = (string)$lastName;
+        $this->attributes['lastName'] = (string) $lastName;
         $this->fixNameByType();
-        return $this;
 
+        return $this;
     }
 
     /**
-     *
      * @param bool $sendEmail
+     *
      * @return Principal
      */
     public function setSendEmail($sendEmail)
     {
-        $this->attributes["sendEmail"] = VT::toBool($sendEmail);
-        return $this;
+        $this->attributes['sendEmail'] = VT::toBool($sendEmail);
 
+        return $this;
     }
 
     /**
      * @param bool $isMember
+     *
      * @return Principal
      */
     public function setIsMember($isMember)
     {
-        $this->attributes["isMember"] = VT::toBool($isMember);
+        $this->attributes['isMember'] = VT::toBool($isMember);
+
         return $this;
     }
 }

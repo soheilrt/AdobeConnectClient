@@ -1,6 +1,5 @@
 <?php
 
-
 namespace AdobeConnectClient\Commands;
 
 use AdobeConnectClient\Abstracts\Command;
@@ -16,20 +15,21 @@ use AdobeConnectClient\Helpers\StatusValidate;
 class ScoShortcuts extends Command
 {
     /**
-     * Request Parameters
+     * Request Parameters.
      *
      * @var array
      */
-    protected $parameters = ["action" => "sco-shortcuts"];
+    protected $parameters = ['action' => 'sco-shortcuts'];
 
     /**
-     * Process the command and return a value
+     * Process the command and return a value.
      *
-     * @return SCO[]
      * @throws InvalidException
      * @throws NoAccessException
      * @throws NoDataException
      * @throws TooMuchDataException
+     *
+     * @return SCO[]
      */
     protected function process()
     {
@@ -43,10 +43,11 @@ class ScoShortcuts extends Command
 
         $shorcuts = [];
         foreach ($response['shortcuts'] as $shortcut) {
-            $sco = new SCO;
+            $sco = new SCO();
             FillObject::setAttributes($sco, $shortcut);
             $shorcuts[$sco->type] = $sco;
         }
+
         return $shorcuts;
     }
 }

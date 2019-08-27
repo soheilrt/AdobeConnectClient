@@ -34,6 +34,7 @@ interface ResponseInterface
      * empty array.
      *
      * @param string $name Case-insensitive header field name.
+     *
      * @return array An array of string values as provided for the given header.
      */
     public function getHeader($name);
@@ -63,6 +64,7 @@ interface ResponseInterface
      * and supply your own delimiter when concatenating.
      *
      * @param string $name Case-insensitive header field name.
+     *
      * @return string
      */
     public function getHeaderLine($name);

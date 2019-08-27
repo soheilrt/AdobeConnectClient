@@ -7,7 +7,7 @@ use DateTime;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 
-class VTTest extends TestCase
+class ValueTransformTest extends TestCase
 {
     public function testToBoolean()
     {

@@ -35,6 +35,7 @@ class ParameterTest extends TestCase
 
     /**
      * @depends testSet
+     *
      * @param Parameter $parameter
      */
     public function testRemove(Parameter $parameter)

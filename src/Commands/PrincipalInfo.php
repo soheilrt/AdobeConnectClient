@@ -25,11 +25,11 @@ class PrincipalInfo extends Command
      */
     public function __construct($principalId)
     {
-        $this->principalId = (int)$principalId;
+        $this->principalId = (int) $principalId;
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      *
      * @return Principal
      */
@@ -37,9 +37,9 @@ class PrincipalInfo extends Command
     {
         $response = Converter::convert(
             $this->client->doGet([
-                'action' => 'principal-info',
+                'action'       => 'principal-info',
                 'principal-id' => $this->principalId,
-                'session' => $this->client->getSession()
+                'session'      => $this->client->getSession(),
             ])
         );
 
@@ -47,6 +47,7 @@ class PrincipalInfo extends Command
 
         $principal = new Principal();
         FillObject::setAttributes($principal, $response['principal']);
+
         return $principal;
     }
 }

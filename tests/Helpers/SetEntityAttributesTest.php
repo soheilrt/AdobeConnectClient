@@ -8,15 +8,14 @@ use PHPUnit\Framework\TestCase;
 
 class SetEntityAttributesTest extends TestCase
 {
-
     public function testSetAttributes()
     {
         $data = [
-            'acl-id' => 5,
+            'acl-id'        => 5,
             'permission-id' => Permission::PRINCIPAL_HOST,
-            'imaginary' => [
-                'principal-id' => 10
-            ]
+            'imaginary'     => [
+                'principal-id' => 10,
+            ],
         ];
 
         $permission = new Permission();

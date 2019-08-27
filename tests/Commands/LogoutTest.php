@@ -7,7 +7,7 @@ use AdobeConnectClient\Commands\Logout;
 class LogoutTest extends TestCommandBase
 {
     /**
-     * return string
+     * return string.
      */
     public function testLogout()
     {

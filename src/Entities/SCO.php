@@ -11,7 +11,7 @@ use DateTimeInterface;
 use Exception;
 
 /**
- * Adobe Connect SCO
+ * Adobe Connect SCO.
  *
  * See {@link https://helpx.adobe.com/adobe-connect/webservices/common-xml-elements-attributes.html#type}
  *
@@ -43,24 +43,28 @@ class SCO implements ArrayableInterface
     /**
      * A viewable file uploaded to the server.
      * For example, an FLV file, an HTML file, an image, a pod, and so on.
+     *
      * @var string
      */
     const TYPE_CONTENT = 'content';
 
     /**
      * A curriculum.
+     *
      * @var string
      */
     const TYPE_CURRICULUM = 'curriculum';
 
     /**
      * An event.
+     *
      * @var string
      */
     const TYPE_EVENT = 'event';
 
     /**
      * A folder on the server’s hard disk that contains content.
+     *
      * @var string
      */
     const TYPE_FOLDER = 'folder';
@@ -68,18 +72,21 @@ class SCO implements ArrayableInterface
     /**
      * A reference to another SCO. These links are used by curriculums to link to other SCOs.
      * When content is added to a curriculum, a link is created from the curriculum to the content.
+     *
      * @var string
      */
     const TYPE_LINK = 'link';
 
     /**
      * An Adobe Connect meeting.
+     *
      * @var string
      */
     const TYPE_MEETING = 'meeting';
 
     /**
      * One occurrence of a recurring Adobe Connect meeting.
+     *
      * @var string
      */
     const TYPE_SESSION = 'session';
@@ -87,115 +94,134 @@ class SCO implements ArrayableInterface
     /**
      * The root of a folder hierarchy. A tree’s root is treated as an independent hierarchy;
      * you can’t determine the parent folder of a tree from inside the tree.
+     *
      * @var string
      */
     const TYPE_TREE = 'tree';
 
     /**
-     * Create a new SCO Instance
+     * Create a new SCO Instance.
      *
      * @return SCO
      */
     public static function instance()
     {
-        return new static;
+        return new static();
     }
 
     /**
-     * Set the disabled status
+     * Set the disabled status.
      *
      * @param bool $disabled
+     *
      * @return SCO
      */
     public function setDisabled($disabled)
     {
         $this->attributes['disabled'] = VT::toBool($disabled);
+
         return $this;
     }
 
     /**
-     * Set the Created Date
+     * Set the Created Date.
      *
      * @param DateTimeInterface|string $dateCreated
-     * @return SCO
+     *
      * @throws Exception
+     *
+     * @return SCO
      */
     public function setDateCreated($dateCreated)
     {
         $this->attributes['dateCreated'] = VT::toDateTimeImmutable($dateCreated);
+
         return $this;
     }
 
     /**
-     * Set the Modified Date
+     * Set the Modified Date.
      *
      * @param DateTimeInterface|string $dateModified
-     * @return SCO
+     *
      * @throws Exception
+     *
+     * @return SCO
      */
     public function setDateModified($dateModified)
     {
         $this->attributes['dateModified'] = VT::toDateTimeImmutable($dateModified);
+
         return $this;
     }
 
     /**
-     * Set the time Meeting begin
+     * Set the time Meeting begin.
      *
      * @param DateTimeInterface|string $dateBegin
-     * @return SCO
+     *
      * @throws Exception
+     *
+     * @return SCO
      */
     public function setDateBegin($dateBegin)
     {
         $this->attributes['dateBegin'] = VT::toDateTimeImmutable($dateBegin);
+
         return $this;
     }
 
     /**
-     * Set the time Meeting end
+     * Set the time Meeting end.
      *
      * @param DateTimeInterface|string $dateEnd
-     * @return SCO
+     *
      * @throws Exception
+     *
+     * @return SCO
      */
     public function setDateEnd($dateEnd)
     {
-        $this->attributes["dateEnd"] = VT::toDateTimeImmutable($dateEnd);
+        $this->attributes['dateEnd'] = VT::toDateTimeImmutable($dateEnd);
+
         return $this;
     }
 
     /**
-     * Set the Pods Layout locked status
+     * Set the Pods Layout locked status.
      *
      * @param bool $meetingPodsLayoutsLocked
+     *
      * @return SCO
      */
     public function setMeetingPodsLayoutsLocked($meetingPodsLayoutsLocked)
     {
         $this->attributes['meetingPodsLayoutsLocked'] = VT::toBool($meetingPodsLayoutsLocked);
+
         return $this;
     }
 
     /**
-     * Set the linked item status
+     * Set the linked item status.
      *
      * @param bool $updateLinkedItem
+     *
      * @return SCO
      */
     public function setUpdateLinkedItem($updateLinkedItem)
     {
         $this->attributes['updateLinkedItem'] = VT::toBool($updateLinkedItem);
+
         return $this;
     }
 
     /**
-     * get the linked item status
+     * get the linked item status.
      *
      * @return bool
      */
     public function getUpdateLinkedItem()
     {
-        return isset($this->attributes["updateLinkedItem"]) ? $this->attributes["updateLinkedItem"] : false;
+        return isset($this->attributes['updateLinkedItem']) ? $this->attributes['updateLinkedItem'] : false;
     }
 }

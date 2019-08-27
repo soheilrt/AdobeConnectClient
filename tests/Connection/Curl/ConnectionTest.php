@@ -42,9 +42,9 @@ class ConnectionTest extends TestCase
         $connection = new Connection($this->host);
         $response = $connection->post(
             [
-                'invalid' => 'string',
-                'fileResource' => fopen(__DIR__ . '/ConnectionTest.php', 'r'),
-                'SplFileInfo' => new SplFileInfo(__DIR__ . '/ConnectionTest.php')
+                'invalid'      => 'string',
+                'fileResource' => fopen(__DIR__.'/ConnectionTest.php', 'r'),
+                'SplFileInfo'  => new SplFileInfo(__DIR__.'/ConnectionTest.php'),
             ]
         );
         $this->assertInstanceOf(ResponseInterface::class, $response);

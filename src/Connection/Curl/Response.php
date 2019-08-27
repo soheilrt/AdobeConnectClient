@@ -31,9 +31,9 @@ class Response implements ResponseInterface
     /**
      * Create the Response.
      *
-     * @param int $statusCode The response status code
-     * @param array $headers Associative array as name => value. Value is an array of strings
-     * @param StreamInterface $body The response body
+     * @param int             $statusCode The response status code
+     * @param array           $headers    Associative array as name => value. Value is an array of strings
+     * @param StreamInterface $body       The response body
      */
     public function __construct($statusCode, array $headers, StreamInterface $body)
     {
@@ -43,7 +43,7 @@ class Response implements ResponseInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getStatusCode()
     {
@@ -51,7 +51,7 @@ class Response implements ResponseInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getBody()
     {
@@ -59,7 +59,7 @@ class Response implements ResponseInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getHeaders()
     {
@@ -67,7 +67,7 @@ class Response implements ResponseInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getHeaderLine($name)
     {
@@ -75,7 +75,7 @@ class Response implements ResponseInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getHeader($name)
     {
@@ -89,13 +89,15 @@ class Response implements ResponseInterface
                 return $value;
             }
         }
+
         return [];
     }
 
     /**
-     * Normalize the string to compare with others strings
+     * Normalize the string to compare with others strings.
      *
      * @param string $string
+     *
      * @return string
      */
     protected function normalizeString($string)

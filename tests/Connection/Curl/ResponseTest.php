@@ -1,13 +1,11 @@
 <?php
 
-
 namespace AdobeConnectClient\Tests\Connection\Curl;
 
 use AdobeConnectClient\Connection\Curl\Response;
 use AdobeConnectClient\Connection\Curl\Stream;
 use AdobeConnectClient\Connection\ResponseInterface;
 use PHPUnit\Framework\TestCase;
-
 
 class ResponseTest extends TestCase
 {

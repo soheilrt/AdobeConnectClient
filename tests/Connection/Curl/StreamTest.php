@@ -6,7 +6,6 @@ use AdobeConnectClient\Connection\Curl\Stream;
 use AdobeConnectClient\Connection\StreamInterface;
 use PHPUnit\Framework\TestCase;
 
-
 class StreamTest extends TestCase
 {
     public function testStreamInterface()
@@ -18,6 +17,6 @@ class StreamTest extends TestCase
     public function testToString()
     {
         $stream = new Stream('Hello');
-        $this->assertEquals('Hello', (string)$stream);
+        $this->assertEquals('Hello', (string) $stream);
     }
 }

@@ -7,7 +7,7 @@ use AdobeConnectClient\Commands\Login;
 class LoginTest extends TestCommandBase
 {
     /**
-     * return string
+     * return string.
      */
     public function testUserSuccess()
     {

@@ -30,14 +30,13 @@ class ScoShortcutsTest extends TestCommandBase
 
         $this->expectException(NoAccessException::class);
         $command->execute();
-
     }
 
     public function testListAll()
     {
         $this->userLogin();
 
-        $command = new ScoShortcuts;
+        $command = new ScoShortcuts();
         $command->setClient($this->client);
 
         $sco_shortcuts = $command->execute();

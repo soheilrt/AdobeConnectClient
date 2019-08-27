@@ -1,6 +1,5 @@
 <?php
 
-
 namespace AdobeConnectClient\Tests\Entities;
 
 use AdobeConnectClient\Entities\SCORecord;
@@ -9,7 +8,6 @@ use DateTime;
 use DateTimeImmutable;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-
 
 class SCORecordTest extends TestCase
 {
@@ -250,7 +248,6 @@ class SCORecordTest extends TestCase
         $record->setDuration('01:20:10');
         $this->assertInstanceOf(DateInterval::class, $record->getDuration());
         $this->assertEquals($duration, $record->getDuration());
-
     }
 
     public function testDurationInvalid()

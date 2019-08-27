@@ -9,7 +9,7 @@ use DateTimeInterface;
 use Exception;
 
 /**
- * Result for Common Info Action
+ * Result for Common Info Action.
  *
  * @property string|mixed $local
  * @property int|string $timeZoneId Time Zone ID list in {@link https://helpx.adobe.com/adobe-connect/webservices/common-xml-elements-attributes.html#time_zone_id}
@@ -21,22 +21,24 @@ use Exception;
  * @property string|mixed $url
  * @property DateTimeImmutable|string|mixed $date
  * @property string|mixed $adminHost
- *
  */
 class CommonInfo
 {
     use PropertyCaller;
 
     /**
-     * Set the Date
+     * Set the Date.
      *
      * @param DateTimeInterface|string $date
-     * @return CommonInfo
+     *
      * @throws Exception
+     *
+     * @return CommonInfo
      */
     public function setDate($date)
     {
-        $this->attributes["date"] = VT::toDateTimeImmutable($date);
+        $this->attributes['date'] = VT::toDateTimeImmutable($date);
+
         return $this;
     }
 }

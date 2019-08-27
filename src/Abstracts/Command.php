@@ -13,7 +13,7 @@ use InvalidArgumentException;
 use UnexpectedValueException;
 
 /**
- * The Commands base class is an abstraction to Web Service actions
+ * The Commands base class is an abstraction to Web Service actions.
  *
  * Need set the Client dependency to execute the command.
  * For a list of actions see {@link https://helpx.adobe.com/adobe-connect/webservices/topics/action-reference.html}
@@ -29,18 +29,19 @@ abstract class Command
 
     /**
      * @param Client $client
+     *
      * @return Command
      */
     public function setClient(Client $client)
     {
         $this->client = $client;
+
         return $this;
     }
 
     /**
-     * Executes the command and return a value
+     * Executes the command and return a value.
      *
-     * @return mixed
      * @throws InvalidException
      * @throws NoAccessException
      * @throws NoDataException
@@ -49,19 +50,21 @@ abstract class Command
      * @throws InvalidArgumentException
      * @throws DomainException
      * @throws BadMethodCallException
+     *
+     * @return mixed
      */
     public function execute()
     {
         if (!($this->client instanceof Client)) {
             throw new BadMethodCallException('Needs the Client to execute a Command');
         }
+
         return $this->process();
     }
 
     /**
-     * Process the command and return a value
+     * Process the command and return a value.
      *
-     * @return mixed
      * @throws InvalidException
      * @throws NoAccessException
      * @throws NoDataException
@@ -69,6 +72,8 @@ abstract class Command
      * @throws UnexpectedValueException
      * @throws InvalidArgumentException
      * @throws DomainException
+     *
+     * @return mixed
      */
     abstract protected function process();
 }

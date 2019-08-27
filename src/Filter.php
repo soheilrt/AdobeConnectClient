@@ -8,7 +8,7 @@ use AdobeConnectClient\Helpers\ValueTransform as VT;
 use DateTimeInterface;
 
 /**
- * Create valid filters using Fluent Interface
+ * Create valid filters using Fluent Interface.
  *
  * See {@link https://helpx.adobe.com/content/help/en/adobe-connect/webservices/filter-definition.html}
  */
@@ -20,32 +20,34 @@ class Filter implements ArrayableInterface
     protected $filters = [];
 
     /**
-     * Prefix to use in filters to indicate it's filter
+     * Prefix to use in filters to indicate it's filter.
      *
      * @var string
      */
     protected $prefix = 'filter';
 
     /**
-     * Return a new Filter instance
+     * Return a new Filter instance.
      *
      * @return Filter
      */
     public static function instance()
     {
-        return new static;
+        return new static();
     }
 
     /**
      * Returns if exactly matches.
      *
      * @param string $field The Field in camelCase
-     * @param mixed $value The Value to compare
+     * @param mixed  $value The Value to compare
+     *
      * @return Filter Fluent Interface
      */
     public function equals($field, $value)
     {
         $this->setFilter('', $field, $value);
+
         return $this;
     }
 
@@ -54,14 +56,14 @@ class Filter implements ArrayableInterface
      *
      * @param string $operator
      * @param string $field
-     * @param mixed $value
+     * @param mixed  $value
      */
     protected function setFilter($operator, $field, $value)
     {
         $filterName = $this->prefix
-            . '-'
-            . ($operator ? $operator . '-' : '')
-            . SCT::toHyphen($field);
+            .'-'
+            .($operator ? $operator.'-' : '')
+            .SCT::toHyphen($field);
 
         $this->filters[$filterName] = VT::toString($value);
     }
@@ -70,12 +72,14 @@ class Filter implements ArrayableInterface
      * Returns even if is not an exact match.
      *
      * @param string $field The Field in camelCase
-     * @param mixed $value The Value to compare
+     * @param mixed  $value The Value to compare
+     *
      * @return Filter Fluent Interface
      */
     public function like($field, $value)
     {
         $this->setFilter('like', $field, $value);
+
         return $this;
     }
 
@@ -83,12 +87,14 @@ class Filter implements ArrayableInterface
      * Filters out or excludes.
      *
      * @param string $field The Field in camelCase
-     * @param mixed $value The Value to compare
+     * @param mixed  $value The Value to compare
+     *
      * @return Filter Fluent Interface
      */
     public function out($field, $value)
     {
         $this->setFilter('out', $field, $value);
+
         return $this;
     }
 
@@ -96,11 +102,13 @@ class Filter implements ArrayableInterface
      * Limits the results to the number of rows specified.
      *
      * @param int $limit The limit rows
+     *
      * @return Filter Fluent Interface
      */
     public function rows($limit)
     {
         $this->setFilter('', 'rows', $limit);
+
         return $this;
     }
 
@@ -108,20 +116,23 @@ class Filter implements ArrayableInterface
      * Starts the results at the index number specified.
      *
      * @param int $offset The initial index
+     *
      * @return Filter Fluent Interface
      */
     public function start($offset)
     {
         $this->setFilter('', 'start', $offset);
+
         return $this;
     }
 
     /**
      * Selects all items with a date after.
      *
-     * @param string $dateField The Date Field in camelCase
-     * @param \DateTimeInterface $date The value to compare
-     * @param bool $inclusive Filter inclusive the date
+     * @param string             $dateField The Date Field in camelCase
+     * @param \DateTimeInterface $date      The value to compare
+     * @param bool               $inclusive Filter inclusive the date
+     *
      * @return Filter Fluent Interface
      */
     public function dateAfter($dateField, DateTimeInterface $date, $inclusive = true)
@@ -131,15 +142,17 @@ class Filter implements ArrayableInterface
             $dateField,
             $date->format(\DateTime::W3C)
         );
+
         return $this;
     }
 
     /**
-     * Selects all items with a date earlier
+     * Selects all items with a date earlier.
      *
-     * @param string $dateField The Date Field in camelCase
-     * @param \DateTimeInterface $date The value to compare
-     * @param bool $inclusive Filter inclusive the date
+     * @param string             $dateField The Date Field in camelCase
+     * @param \DateTimeInterface $date      The value to compare
+     * @param bool               $inclusive Filter inclusive the date
+     *
      * @return Filter Fluent Interface
      */
     public function dateBefore($dateField, DateTimeInterface $date, $inclusive = true)
@@ -149,6 +162,7 @@ class Filter implements ArrayableInterface
             $dateField,
             $date->format(\DateTime::W3C)
         );
+
         return $this;
     }
 
@@ -156,18 +170,21 @@ class Filter implements ArrayableInterface
      * Selects all principals that are members of a group, specified in a separate parameter.
      *
      * @param mixed $value The value to compare
+     *
      * @return Filter Fluent Interface
      */
     public function isMember($value)
     {
         $this->setFilter('', 'ismember', $value);
+
         return $this;
     }
 
     /**
-     * Remove all filters using the Field
+     * Remove all filters using the Field.
      *
      * @param string $field The Field in camelCase
+     *
      * @return Filter
      */
     public function removeField($field)
@@ -180,11 +197,12 @@ class Filter implements ArrayableInterface
             },
             ARRAY_FILTER_USE_KEY
         );
+
         return $this;
     }
 
     /**
-     * Retrieves all not null attributes in an associative array
+     * Retrieves all not null attributes in an associative array.
      *
      * The keys in hash style: Ex: is-member
      * The values as string
