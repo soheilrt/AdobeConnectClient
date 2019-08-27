@@ -8,6 +8,8 @@ use BadMethodCallException;
 
 trait PropertyCaller
 {
+    use Setter;
+
     /**
      * magic caller method for on fly attribute setting or getting as function
      *

@@ -6,7 +6,6 @@ use AdobeConnectClient\Contracts\ArrayableInterface;
 use AdobeConnectClient\Helpers\ValueTransform as VT;
 use AdobeConnectClient\Traits\Arrayable;
 use AdobeConnectClient\Traits\PropertyCaller;
-use AdobeConnectClient\Traits\Setter;
 use DateTimeImmutable;
 use DateTimeInterface;
 use Exception;
@@ -39,7 +38,7 @@ use Exception;
  */
 class SCO implements ArrayableInterface
 {
-    use Arrayable, Setter, PropertyCaller;
+    use Arrayable, PropertyCaller;
 
     /**
      * A viewable file uploaded to the server.

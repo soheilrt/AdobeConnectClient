@@ -4,7 +4,6 @@ namespace AdobeConnectClient\Entities;
 
 use AdobeConnectClient\Helpers\ValueTransform as VT;
 use AdobeConnectClient\Traits\PropertyCaller;
-use AdobeConnectClient\Traits\Setter;
 use DateTimeImmutable;
 use DateTimeInterface;
 use Exception;
@@ -26,7 +25,7 @@ use Exception;
  */
 class CommonInfo
 {
-    use Setter, PropertyCaller;
+    use PropertyCaller;
 
     /**
      * Set the Date
@@ -37,7 +36,7 @@ class CommonInfo
      */
     public function setDate($date)
     {
-        $this->date = VT::toDateTimeImmutable($date);
+        $this->attributes["date"]= VT::toDateTimeImmutable($date);
         return $this;
     }
 }

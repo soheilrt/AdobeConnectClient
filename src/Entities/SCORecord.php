@@ -4,7 +4,6 @@ namespace AdobeConnectClient\Entities;
 
 use AdobeConnectClient\Helpers\ValueTransform as VT;
 use AdobeConnectClient\Traits\PropertyCaller;
-use AdobeConnectClient\Traits\Setter;
 use DateInterval;
 use DateTimeImmutable;
 use Exception;
@@ -36,7 +35,7 @@ use InvalidArgumentException;
  */
 class SCORecord
 {
-    use Setter, PropertyCaller;
+    use PropertyCaller;
 
     /**
      * Set if is Folder

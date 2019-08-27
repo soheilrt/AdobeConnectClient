@@ -6,7 +6,6 @@ use AdobeConnectClient\Contracts\ArrayableInterface;
 use AdobeConnectClient\Helpers\StringCaseTransform as SCT;
 use AdobeConnectClient\Helpers\ValueTransform as VT;
 use AdobeConnectClient\Traits\PropertyCaller;
-use AdobeConnectClient\Traits\Setter;
 use DomainException;
 
 /**
@@ -39,12 +38,43 @@ use DomainException;
  * @property bool|string|mixed $send_email  only on create a user
  * @property bool|string|mixed $is_member only on create a user . Indicates if the user is a member of the group (@see \AdobeConnectClient\Commands\PrincipalList)
  *
+ * @method  $this setDisplayId($value)
+ * @method  $this setPrincipalId($value)
+ * @method  $this setTrainingGroupId($value)
+ * @method  $this setAccountId($value)
+ * @method  $this setLogin($value)
+ * @method  $this setPermissionId($value) @see Permission::PRINCIPAL_* constants
+ * @method  $this setDescription($value)  The new group’s description. Use only when creating a new group.
+ * @method  $this setEmail($value) Only for user
+ * @method  $this setPassword($value) Only on create a user
+ * @method  $this setIsEcommerece($value)
+ * @method int|string|mixed getName()
+ * @method int|string|mixed getDisplayUid()
+ * @method int|string|mixed getPrincipalId()
+ * @method int|string|mixed getTrainingGroupId()
+ * @method int|string|mixed getAccountId()
+ * @method string|mixed|null getLogin()
+ * @method string|mixed|null getType() See {
+@link https://helpx.adobe.com/adobe-connect/webservices/common-xml-elements-attributes.html#type}
+ * @method string|mixed|null getPermissionId() @see Permission::PRINCIPAL_* constants
+ * @method string|mixed|null getDescription() The new group’s description. Use only when creating a new group.
+ * @method string|mixed|null getEmail() Only for user
+ * @method string|mixed|null getFirstName() Only for user
+ * @method string|mixed|null getLastName() Only for user
+ * @method string|mixed|null getPassword() Only on create a user
+ * @method bool|string|mixed|null getIsPrimary()
+ * @method bool|string|mixed|null getHasChildren() On create: If the principal is a group, use true. If the principal is a user, use false.
+ * @method bool|string|mixed|null getIsEcommerece()
+ * @method bool|string|mixed|null getIsHidden()
+ * @method bool|string|mixed|null getDisabled()
+ * @method bool|string|mixed|null getSendEmail()  only on create a user
+ * @method bool|string|mixed|null getIsMember() only on create a user . Indicates if the user is a member of the group (@see \AdobeConnectClient\Commands\PrincipalList)
  *
  * @todo Maybe a factory for the differents types?
  */
 class Principal implements ArrayableInterface
 {
-    use Setter, PropertyCaller;
+    use PropertyCaller;
     /**
      * The built-in group Administrators, for Adobe Connect server Administrators.
      * @var string

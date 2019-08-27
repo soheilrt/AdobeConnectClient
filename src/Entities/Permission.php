@@ -5,8 +5,6 @@ namespace AdobeConnectClient\Entities;
 use AdobeConnectClient\Contracts\ArrayableInterface;
 use AdobeConnectClient\Traits\Arrayable;
 use AdobeConnectClient\Traits\PropertyCaller;
-use AdobeConnectClient\Traits\Setter;
-
 /**
  * Adobe Connect Permission
  *
@@ -18,7 +16,7 @@ use AdobeConnectClient\Traits\Setter;
  */
 class Permission implements ArrayableInterface
 {
-    use Arrayable, Setter, PropertyCaller;
+    use Arrayable, PropertyCaller;
 
     /**
      * Special permission for Meeting
