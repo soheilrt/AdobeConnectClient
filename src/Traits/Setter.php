@@ -22,16 +22,15 @@ trait Setter
      */
     public function __get($name)
     {
-        if (method_exists($this, $getter = 'get' . SCT::toUpperCamelCase($name))) {
-            return $this->$getter();
-        } else {
-            $attribute = SCT::toCamelCase($name);
-            if (property_exists($this, $attribute)) {
-                return $this->$name;
-            } else {
-                return isset($this->attributes[$attribute]) ? $this->attributes[$attribute] : null;
-            }
+        if ($this->hasGetter($name)) {
+            return $this->{$this->getQualifiedGetterMethodName($name)}();
         }
+        if ($this->hasProperty($name)) {
+            return $this->{$name};
+        }
+
+        $QualifiedAttributeName = $this->getQualifiedAttributeName($name);
+        return isset($this->attributes[$QualifiedAttributeName]) ? $this->attributes[$QualifiedAttributeName] : null;
     }
 
     /**
@@ -43,13 +42,66 @@ trait Setter
      */
     public function __set($name, $value)
     {
-        $setter = 'set' . SCT::toUpperCamelCase($name);
+        $setter = $this->getQualifiedSetterMethodName($name);
         if (method_exists($this, $setter)) {
             $this->$setter($value);
             return $this;
         } else {
-            $this->attributes[SCT::toCamelCase($name)] = $value;
+            $this->attributes[$this->getQualifiedAttributeName($name)] = $value;
             return $this;
         }
+    }
+
+    /**
+     * Determine if function has getter method
+     *
+     * @param $name
+     * @return bool
+     */
+    private function hasGetter($name)
+    {
+        return method_exists($this, $this->getQualifiedGetterMethodName($name));
+    }
+
+    /**
+     * Return Getter Attribute Qualified Getter Name
+     *
+     * @param $name
+     * @return string
+     */
+    public function getQualifiedGetterMethodName($name)
+    {
+        return 'get' . SCT::toUpperCamelCase($name);
+    }
+
+    /**
+     * @param string $name
+     * @return bool
+     */
+    private function hasProperty($name)
+    {
+        return property_exists($this, $name);
+    }
+
+    /**
+     * cast attribute name to qualified hyphen name
+     *
+     * @param $name
+     * @return string
+     */
+    private function getQualifiedAttributeName($name)
+    {
+        return SCT::toCamelCase($name);
+    }
+
+    /**
+     * Return Setter Method Attribute Qualified Name
+     *
+     * @param string $name
+     * @return string
+     */
+    private function getQualifiedSetterMethodName($name)
+    {
+        return 'set' . SCT::toUpperCamelCase($name);
     }
 }

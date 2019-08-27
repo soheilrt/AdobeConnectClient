@@ -4,7 +4,6 @@
 namespace AdobeConnectClient\Traits;
 
 
-use AdobeConnectClient\Helpers\StringCaseTransform as SCT;
 use BadMethodCallException;
 
 trait PropertyCaller
@@ -18,15 +17,26 @@ trait PropertyCaller
      */
     public function __call($name, $arguments)
     {
-        if ($this->callGetter($name, $arguments) && method_exists($this, "__get")) {
-            $name = SCT::toCamelCase($this->getPureNameOfCaller($name));
-            return $this->__get($name);
-        } else if ($this->callSetter($name, $arguments) && method_exists($this, "__set")) {
-            return $this->__set($this->getPureNameOfCaller($name), $arguments[0]);
+        if ($this->isCallableGetter($name, $arguments)) {
+            return $this->__get($this->getAttributeName($name));
+        }
+        if ($this->isCallableSetter($name, $arguments)) {
+            return $this->__set($this->getAttributeName($name), $arguments[0]);
         }
         throw new BadMethodCallException("Called Method Not Found!");
     }
 
+    /**
+     * Determine if called function is getter method and current object has magic getter function
+     *
+     * @param $name
+     * @param $arguments
+     * @return bool
+     */
+    private final function isCallableGetter($name, $arguments)
+    {
+        return ($this->isMatchWithGetterMethodPattern($name, $arguments) && $this->hasMagicGetter());
+    }
 
     /**
      * Determine if user has called a getter method
@@ -35,9 +45,19 @@ trait PropertyCaller
      * @param $arguments
      * @return bool
      */
-    private final function callGetter($name, $arguments)
+    private final function isMatchWithGetterMethodPattern($name, $arguments)
     {
         return preg_match("/(?<=^get)(\w+)/m", $name) && count($arguments) == 0;
+    }
+
+    /**
+     * Determine if current class has magic getter function
+     *
+     * @return bool
+     */
+    private final function hasMagicGetter()
+    {
+        return method_exists($this, "__get");
     }
 
     /**
@@ -46,21 +66,42 @@ trait PropertyCaller
      * @param $name
      * @return mixed
      */
-    private final function getPureNameOfCaller($name)
+    private final function getAttributeName($name)
     {
         preg_match("/(?<=^get|^set)(\w+)/m", $name, $matches);
         return $matches[0];
     }
 
     /**
-     * Determine if user called a setter method
-     *
+     * Determine if called function if setter method and current object has magic setter function
      * @param $name
      * @param $arguments
      * @return bool
      */
-    private final function callSetter($name, $arguments)
+    private final function isCallableSetter($name, $arguments)
+    {
+        return ($this->isMatchWithSetterMethodPattern($name, $arguments) and $this->hasMagicSetter());
+    }
+
+    /**
+     * Determine if user called a setter method and passed
+     *
+     * @param string $name method name
+     * @param $arguments
+     * @return bool
+     */
+    private final function isMatchWithSetterMethodPattern($name, $arguments)
     {
         return preg_match("/(?<=^set)(\w+)/m", $name) && count($arguments) == 1;
+    }
+
+    /**
+     * Determine if current object has magic setter method
+     *
+     * @return bool
+     */
+    private final function hasMagicSetter()
+    {
+        return method_exists($this, "__set");
     }
 }
