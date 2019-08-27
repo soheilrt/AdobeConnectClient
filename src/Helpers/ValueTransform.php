@@ -2,9 +2,9 @@
 
 namespace AdobeConnectClient\Helpers;
 
-use DateTimeInterface;
 use DateTime;
 use DateTimeImmutable;
+use DateTimeInterface;
 
 /**
  * Converts the value into a type.
@@ -31,7 +31,7 @@ abstract class ValueTransform
             return $value->format(DateTime::W3C);
         }
 
-        return (string) $value;
+        return (string)$value;
     }
 
     /**
@@ -51,13 +51,13 @@ abstract class ValueTransform
             return DateTimeImmutable::createFromMutable($value);
         }
 
-        return new DateTimeImmutable((string) $value);
+        return new DateTimeImmutable((string)$value);
     }
 
     /**
      * Transform the value into a boolean type.
      *
-     * @param  mixed $value The value to transform
+     * @param mixed $value The value to transform
      * @return bool
      */
     public static function toBool($value)

@@ -30,8 +30,8 @@ class RecordingPasscode extends Command
      */
     public function __construct($scoId, $passcode)
     {
-        $this->scoId = (int) $scoId;
-        $this->passcode = (string) $passcode;
+        $this->scoId = (int)$scoId;
+        $this->passcode = (string)$passcode;
     }
 
     /**

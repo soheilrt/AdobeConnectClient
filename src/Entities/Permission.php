@@ -5,6 +5,7 @@ namespace AdobeConnectClient\Entities;
 use AdobeConnectClient\Contracts\ArrayableInterface;
 use AdobeConnectClient\Traits\Arrayable;
 use AdobeConnectClient\Traits\PropertyCaller;
+
 /**
  * Adobe Connect Permission
  *

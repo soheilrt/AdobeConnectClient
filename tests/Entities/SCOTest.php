@@ -2,12 +2,11 @@
 
 namespace AdobeConnectClient\Tests\Entities;
 
+use AdobeConnectClient\Contracts\ArrayableInterface;
+use AdobeConnectClient\Entities\SCO;
+use DateInterval;
 use DateTime;
 use DateTimeImmutable;
-use DateInterval;
-use DomainException;
-use AdobeConnectClient\Entities\SCO;
-use AdobeConnectClient\Contracts\ArrayableInterface;
 use PHPUnit\Framework\TestCase;
 
 
@@ -26,10 +25,10 @@ class SCOTest extends TestCase
     public function testAccountId()
     {
         $sco = SCO::instance();
-        
+
         $sco->setAccountId(1);
         $this->assertEquals(1, $sco->getAccountId());
-        
+
         $sco->setAccountId('1');
         $this->assertEquals(1, $sco->getAccountId());
     }

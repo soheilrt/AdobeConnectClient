@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <results>
-    <status code="ok" />
+    <status code="ok"/>
     <common locale="en" time-zone-id="4">
         <cookie>breezsi4dundh5srw2fq6</cookie>
         <date>2006-09-08T11:17:04.470-07:00</date>
@@ -9,7 +9,7 @@
         <admin-host>securehost.com</admin-host>
         <url>/api/xml?action=common-info</url>
         <version>connect_6000</version>
-        <account account-id="624520" />
+        <account account-id="624520"/>
         <user user-id="2006258745" type="user">
             <name>Joy Smith</name>
             <login>joy@acme.com</login>

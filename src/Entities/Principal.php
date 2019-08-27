@@ -55,7 +55,7 @@ use DomainException;
  * @method int|string|mixed getAccountId()
  * @method string|mixed|null getLogin()
  * @method string|mixed|null getType() See {
-@link https://helpx.adobe.com/adobe-connect/webservices/common-xml-elements-attributes.html#type}
+ * @link https://helpx.adobe.com/adobe-connect/webservices/common-xml-elements-attributes.html#type}
  * @method string|mixed|null getPermissionId() @see Permission::PRINCIPAL_* constants
  * @method string|mixed|null getDescription() The new group’s description. Use only when creating a new group.
  * @method string|mixed|null getEmail() Only for user
@@ -165,6 +165,49 @@ class Principal implements ArrayableInterface
      */
     const TYPE_USER = 'user';
 
+    /**
+     * Returns a new Principal instance
+     *
+     * @return Principal
+     */
+    public static function instance()
+    {
+        return new static;
+    }
+
+    /**
+     * Retrieves all not null attributes in an associative array
+     *
+     * @return string[] [string => string]
+     * @todo Returns fields for all types
+     *
+     */
+    public function toArray()
+    {
+        $parameters = [];
+
+        switch ($this->type) {
+            case self::TYPE_USER:
+                $fields = $this->fieldsForUser();
+                break;
+
+            case self::TYPE_GROUP:
+                $fields = $this->fieldsForGroup();
+                break;
+
+            default:
+                $fields = [];
+        }
+
+        foreach ($fields as $field) {
+            $value = $this->$field;
+
+            if (isset($value)) {
+                $parameters[SCT::toHyphen($field)] = VT::toString($value);
+            }
+        }
+        return $parameters;
+    }
 
     /**
      * The fields for create/update a User
@@ -203,62 +246,47 @@ class Principal implements ArrayableInterface
     }
 
     /**
-     * Returns a new Principal instance
-     *
-     * @return Principal
-     */
-    public static function instance()
-    {
-        return new static;
-    }
-
-    /**
-     * Retrieves all not null attributes in an associative array
-     *
-     * @todo Returns fields for all types
-     *
-     * @return string[] [string => string]
-     */
-    public function toArray()
-    {
-        $parameters = [];
-
-        switch ($this->type) {
-            case self::TYPE_USER:
-                $fields = $this->fieldsForUser();
-                break;
-
-            case self::TYPE_GROUP:
-                $fields = $this->fieldsForGroup();
-                break;
-
-            default:
-                $fields = [];
-        }
-
-        foreach ($fields as $field) {
-            $value = $this->$field;
-
-            if (isset($value)) {
-                $parameters[SCT::toHyphen($field)] = VT::toString($value);
-            }
-        }
-        return $parameters;
-    }
-
-
-
-
-    /**
      *
      * @param string $name
      * @return Principal
      */
     public function setName($name)
     {
-        $this->attributes["name"] = (string) $name;
+        $this->attributes["name"] = (string)$name;
         $this->fixNameByType();
         return $this;
+    }
+
+    /**
+     * Fix the name or firstName and lastName.
+     *
+     * The user type has firstName and lastName, but some actions from Adobe Connect returns the
+     * Principal user type with name, so we need fix it.
+     */
+    protected function fixNameByType()
+    {
+        if ($this->type === self::TYPE_GROUP and
+            !isset($this->attributes["name"]) and
+            isset($this->attributes["firstName"]) and
+            isset($this->attributes["lastName"])) {
+            $this->attributes["name"] = $this->attributes["firstName"] . ' ' . $this->attributes["lastName"];
+            return;
+        }
+
+        if ($this->type === self::TYPE_USER and
+            empty($this->attributes["firstName"]) and
+            empty($this->attributes["lastName"]) and
+            isset($this->attributes["name"])) {
+
+            $names = explode(' ', $this->name, 2);
+
+            if (count($names) !== 2) {
+                $this->first_name = $names[0];
+                return;
+            }
+
+            list($this->attributes["firstName"], $this->attributes["lastName"]) = $names;
+        }
     }
 
     /**
@@ -283,7 +311,7 @@ class Principal implements ArrayableInterface
      */
     public function setType($type)
     {
-        $this->attributes["type"] = (string) $type;
+        $this->attributes["type"] = (string)$type;
 
         if (!in_array(
             $this->attributes["type"],
@@ -314,38 +342,6 @@ class Principal implements ArrayableInterface
     }
 
     /**
-     * Fix the name or firstName and lastName.
-     *
-     * The user type has firstName and lastName, but some actions from Adobe Connect returns the
-     * Principal user type with name, so we need fix it.
-     */
-    protected function fixNameByType()
-    {
-        if ($this->type === self::TYPE_GROUP and
-            !isset($this->attributes["name"]) and
-            isset($this->attributes["firstName"]) and
-            isset($this->attributes["lastName"])) {
-            $this->attributes["name"] = $this->attributes["firstName"]. ' ' . $this->attributes["lastName"];
-            return;
-        }
-
-        if ($this->type === self::TYPE_USER and
-            empty($this->attributes["firstName"]) and
-            empty($this->attributes["lastName"]) and
-            isset($this->attributes["name"]) ) {
-
-            $names = explode(' ', $this->name, 2);
-
-            if (count($names) !== 2) {
-                $this->first_name = $names[0];
-                return;
-            }
-
-            list($this->attributes["firstName"], $this->attributes["lastName"]) = $names;
-        }
-    }
-
-    /**
      * @param bool $hasChildren
      * @return Principal
      */
@@ -373,7 +369,7 @@ class Principal implements ArrayableInterface
      */
     public function setIsHidden($isHidden)
     {
-        $this->attributes["isHidden"]= VT::toBool($isHidden);
+        $this->attributes["isHidden"] = VT::toBool($isHidden);
         return $this;
     }
 
@@ -395,7 +391,7 @@ class Principal implements ArrayableInterface
      */
     public function setFirstName($firstName)
     {
-        $this->attributes["firstName"] = (string) $firstName;
+        $this->attributes["firstName"] = (string)$firstName;
         $this->fixNameByType();
         return $this;
     }
@@ -407,7 +403,7 @@ class Principal implements ArrayableInterface
      */
     public function setLastName($lastName)
     {
-        $this->attributes["lastName"] = (string) $lastName;
+        $this->attributes["lastName"] = (string)$lastName;
         $this->fixNameByType();
         return $this;
 

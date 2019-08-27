@@ -3,10 +3,10 @@
 namespace AdobeConnectClient\Commands;
 
 use AdobeConnectClient\Abstracts\Command;
-use AdobeConnectClient\Entities\SCORecord;
 use AdobeConnectClient\Converter\Converter;
-use AdobeConnectClient\Helpers\StatusValidate;
+use AdobeConnectClient\Entities\SCORecord;
 use AdobeConnectClient\Helpers\SetEntityAttributes as FillObject;
+use AdobeConnectClient\Helpers\StatusValidate;
 
 /**
  * Provides a list of recordings (FLV and MP4) for a specified folder or SCO
@@ -25,7 +25,7 @@ class ListRecordings extends Command
      */
     public function __construct($folderId)
     {
-        $this->folderId = (int) $folderId;
+        $this->folderId = (int)$folderId;
     }
 
     /**

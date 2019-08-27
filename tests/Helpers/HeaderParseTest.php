@@ -13,12 +13,6 @@ class HeaderParseTest extends TestCase
     protected $cookieValue = 'na9breezx3385yw9ymhhzb5p';
     protected $headerLine = '';
 
-    protected function setUp()
-    {
-        parent::setUp();
-        $this->headerLine = "{$this->cookieName}={$this->cookieValue};HttpOnly;domain=.adobeconnect.com;secure;path=/";
-    }
-
     public function testHeaderParseString()
     {
         $parsed = HeaderParse::parse($this->headerLine);
@@ -39,5 +33,11 @@ class HeaderParseTest extends TestCase
             ]
         );
         $this->assertEquals($this->cookieValue, $parsed[0][$this->cookieName]);
+    }
+
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->headerLine = "{$this->cookieName}={$this->cookieValue};HttpOnly;domain=.adobeconnect.com;secure;path=/";
     }
 }

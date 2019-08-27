@@ -2,11 +2,11 @@
 
 namespace AdobeConnectClient\Tests\Converter;
 
-use InvalidArgumentException;
-use AdobeConnectClient\Converter\ConverterXML;
 use AdobeConnectClient\Connection\Curl\Response;
 use AdobeConnectClient\Connection\Curl\Stream;
+use AdobeConnectClient\Converter\ConverterXML;
 use AdobeConnectClient\Tests\Connection\File\Connection;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 class ConverterXmlTest extends TestCase

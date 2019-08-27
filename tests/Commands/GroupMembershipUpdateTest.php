@@ -3,8 +3,8 @@
 namespace AdobeConnectClient\Tests\Commands;
 
 use AdobeConnectClient\Commands\GroupMembershipUpdate;
-use AdobeConnectClient\Exceptions\NoAccessException;
 use AdobeConnectClient\Exceptions\InvalidException;
+use AdobeConnectClient\Exceptions\NoAccessException;
 
 class GroupMembershipUpdateTest extends TestCommandBase
 {

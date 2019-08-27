@@ -41,7 +41,7 @@ class ScoCreateTest extends TestCommandBase
         $dateEnd = new \DateTimeImmutable('2018-03-12T15:00:00.000-03:00');
 
         $sco = SCO::instance()
-            ->setScoId(1)                // this will be removed
+            ->setScoId(1)// this will be removed
             ->setName('SCO Name')
             ->setType(SCO::TYPE_MEETING)
             ->setFolderId(2006258747)

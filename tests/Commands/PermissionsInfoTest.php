@@ -5,9 +5,9 @@ namespace AdobeConnectClient\Tests\Commands;
 use AdobeConnectClient\Commands\PermissionsInfo;
 use AdobeConnectClient\Entities\Permission;
 use AdobeConnectClient\Entities\Principal;
+use AdobeConnectClient\Exceptions\NoAccessException;
 use AdobeConnectClient\Filter;
 use AdobeConnectClient\Sorter;
-use AdobeConnectClient\Exceptions\NoAccessException;
 
 class PermissionsInfoTest extends TestCommandBase
 {

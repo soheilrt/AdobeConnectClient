@@ -2,11 +2,11 @@
 
 namespace AdobeConnectClient\Helpers;
 
-use DomainException;
 use AdobeConnectClient\Exceptions\InvalidException;
 use AdobeConnectClient\Exceptions\NoAccessException;
 use AdobeConnectClient\Exceptions\NoDataException;
 use AdobeConnectClient\Exceptions\TooMuchDataException;
+use DomainException;
 
 /**
  * Validate the status code

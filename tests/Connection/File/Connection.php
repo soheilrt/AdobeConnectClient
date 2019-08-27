@@ -2,7 +2,6 @@
 
 namespace AdobeConnectClient\Tests\Connection\File;
 
-use UnexpectedValueException;
 use AdobeConnectClient\Connection\ConnectionInterface;
 use AdobeConnectClient\Connection\Curl\Response;
 use AdobeConnectClient\Connection\Curl\Stream;
@@ -34,19 +33,6 @@ class Connection implements ConnectionInterface
         return $this->session;
     }
 
-    private function getResourcePath(array $queryParams)
-    {
-        $action = $queryParams['action'];
-        ksort($queryParams);
-        $resourceId = sha1(serialize($queryParams));
-
-        if (empty($this->routes[$action][$resourceId])) {
-            trigger_error("Resource to {$action} with resource ID {$resourceId} not found.", E_USER_ERROR);
-        }
-
-        return $this->resources . $this->routes[$action][$resourceId] . '.xml';
-    }
-
     /**
      * @inheritdoc
      */
@@ -62,6 +48,19 @@ class Connection implements ConnectionInterface
             ],
             new Stream(file_get_contents($resourceFile))
         );
+    }
+
+    private function getResourcePath(array $queryParams)
+    {
+        $action = $queryParams['action'];
+        ksort($queryParams);
+        $resourceId = sha1(serialize($queryParams));
+
+        if (empty($this->routes[$action][$resourceId])) {
+            trigger_error("Resource to {$action} with resource ID {$resourceId} not found.", E_USER_ERROR);
+        }
+
+        return $this->resources . $this->routes[$action][$resourceId] . '.xml';
     }
 
     /**

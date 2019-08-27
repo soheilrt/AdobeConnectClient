@@ -13,11 +13,6 @@ class ClientTest extends TestCase
      */
     private $connection;
 
-    protected function setUp()
-    {
-        $this->connection = new Connection();
-    }
-
     public function testSession()
     {
         $client = new Client($this->connection);
@@ -26,7 +21,6 @@ class ClientTest extends TestCase
         $this->assertEquals('sessionstring', $client->getSession());
     }
 
-
     public function testCommandNotFound()
     {
         $client = new Client($this->connection);
@@ -34,5 +28,10 @@ class ClientTest extends TestCase
         $this->expectException(\BadMethodCallException::class);
 
         $client->notFoundCommand();
+    }
+
+    protected function setUp()
+    {
+        $this->connection = new Connection();
     }
 }

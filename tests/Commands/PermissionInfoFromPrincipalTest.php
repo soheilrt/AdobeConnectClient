@@ -4,8 +4,8 @@ namespace AdobeConnectClient\Tests\Commands;
 
 use AdobeConnectClient\Commands\PermissionInfoFromPrincipal;
 use AdobeConnectClient\Entities\Permission;
-use AdobeConnectClient\Exceptions\NoDataException;
 use AdobeConnectClient\Exceptions\NoAccessException;
+use AdobeConnectClient\Exceptions\NoDataException;
 
 class PermissionInfoFromPrincipalTest extends TestCommandBase
 {

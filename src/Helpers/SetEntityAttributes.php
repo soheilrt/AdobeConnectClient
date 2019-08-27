@@ -2,8 +2,6 @@
 
 namespace AdobeConnectClient\Helpers;
 
-use AdobeConnectClient\Helpers\StringCaseTransform as SCT;
-
 /**
  * Set object attributes
  */
@@ -23,7 +21,7 @@ abstract class SetEntityAttributes
                 continue;
             }
 
-            $object->$attr=$value;
+            $object->$attr = $value;
         }
     }
 }

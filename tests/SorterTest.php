@@ -2,8 +2,8 @@
 
 namespace AdobeConnectClient\Tests;
 
-use AdobeConnectClient\Sorter;
 use AdobeConnectClient\Contracts\ArrayableInterface;
+use AdobeConnectClient\Sorter;
 use PHPUnit\Framework\TestCase;
 
 class SorterTest extends TestCase

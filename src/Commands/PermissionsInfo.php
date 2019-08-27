@@ -6,8 +6,8 @@ use AdobeConnectClient\Abstracts\Command;
 use AdobeConnectClient\Contracts\ArrayableInterface;
 use AdobeConnectClient\Converter\Converter;
 use AdobeConnectClient\Entities\Principal;
-use AdobeConnectClient\Helpers\StatusValidate;
 use AdobeConnectClient\Helpers\SetEntityAttributes as FillObject;
+use AdobeConnectClient\Helpers\StatusValidate;
 
 /**
  * Get a list of principals who have permissions to act on a SCO, Principal or Account
@@ -30,10 +30,11 @@ class PermissionsInfo extends Command
         $aclId,
         ArrayableInterface $filter = null,
         ArrayableInterface $sorter = null
-    ) {
+    )
+    {
         $this->parameters = [
             'action' => 'permissions-info',
-            'acl-id' => (int) $aclId,
+            'acl-id' => (int)$aclId,
         ];
 
         if ($filter) {

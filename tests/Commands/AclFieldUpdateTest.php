@@ -3,9 +3,9 @@
 namespace AdobeConnectClient\Tests\Commands;
 
 use AdobeConnectClient\Commands\AclFieldUpdate;
-use AdobeConnectClient\Parameter;
-use AdobeConnectClient\Exceptions\NoAccessException;
 use AdobeConnectClient\Exceptions\InvalidException;
+use AdobeConnectClient\Exceptions\NoAccessException;
+use AdobeConnectClient\Parameter;
 
 class AclFieldUpdateTest extends TestCommandBase
 {

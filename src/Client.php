@@ -3,20 +3,20 @@
 namespace AdobeConnectClient;
 
 use AdobeConnectClient\Abstracts\Command;
-use ReflectionClass;
-use ReflectionException;
-use BadMethodCallException;
-use DomainException;
-use UnexpectedValueException;
 use AdobeConnectClient\Connection\ConnectionInterface;
 use AdobeConnectClient\Connection\ResponseInterface;
-use AdobeConnectClient\Entities\SCO;
-use AdobeConnectClient\Entities\SCORecord;
+use AdobeConnectClient\Contracts\ArrayableInterface as Arrayable;
+use AdobeConnectClient\Entities\CommonInfo;
 use AdobeConnectClient\Entities\Permission;
 use AdobeConnectClient\Entities\Principal;
-use AdobeConnectClient\Entities\CommonInfo;
+use AdobeConnectClient\Entities\SCO;
+use AdobeConnectClient\Entities\SCORecord;
 use AdobeConnectClient\Helpers\StringCaseTransform as SCT;
-use AdobeConnectClient\Contracts\ArrayableInterface as Arrayable;
+use BadMethodCallException;
+use DomainException;
+use ReflectionClass;
+use ReflectionException;
+use UnexpectedValueException;
 
 /**
  * The Client to Adobe Connect API

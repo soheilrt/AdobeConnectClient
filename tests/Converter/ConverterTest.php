@@ -2,11 +2,11 @@
 
 namespace AdobeConnectClient\Tests\Converter;
 
-use DomainException;
-use AdobeConnectClient\Converter\Converter;
 use AdobeConnectClient\Connection\Curl\Response;
 use AdobeConnectClient\Connection\Curl\Stream;
+use AdobeConnectClient\Converter\Converter;
 use AdobeConnectClient\Tests\Connection\File\Connection;
+use DomainException;
 use PHPUnit\Framework\TestCase;
 
 class ConverterTest extends TestCase

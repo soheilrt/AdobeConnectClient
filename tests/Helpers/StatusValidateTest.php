@@ -2,12 +2,12 @@
 
 namespace AdobeConnectClient\Tests;
 
-use DomainException;
-use AdobeConnectClient\Helpers\StatusValidate;
 use AdobeConnectClient\Exceptions\InvalidException;
 use AdobeConnectClient\Exceptions\NoAccessException;
 use AdobeConnectClient\Exceptions\NoDataException;
 use AdobeConnectClient\Exceptions\TooMuchDataException;
+use AdobeConnectClient\Helpers\StatusValidate;
+use DomainException;
 use PHPUnit\Framework\TestCase;
 
 class StatusValidateTest extends TestCase

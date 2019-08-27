@@ -18,6 +18,7 @@ class RecordingPasscodeTest extends TestCommandBase
 
         $command->execute();
     }
+
     public function testSetPasscode()
     {
         $this->userLogin();

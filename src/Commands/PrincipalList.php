@@ -5,9 +5,9 @@ namespace AdobeConnectClient\Commands;
 use AdobeConnectClient\Abstracts\Command;
 use AdobeConnectClient\Contracts\ArrayableInterface;
 use AdobeConnectClient\Converter\Converter;
-use AdobeConnectClient\Helpers\StatusValidate;
-use AdobeConnectClient\Helpers\SetEntityAttributes as FillObject;
 use AdobeConnectClient\Entities\Principal;
+use AdobeConnectClient\Helpers\SetEntityAttributes as FillObject;
+use AdobeConnectClient\Helpers\StatusValidate;
 
 /**
  * Provides a complete list of users and groups, including primary groups.
@@ -30,7 +30,8 @@ class PrincipalList extends Command
         $groupId = 0,
         ArrayableInterface $filter = null,
         ArrayableInterface $sorter = null
-    ) {
+    )
+    {
         $this->parameters = [
             'action' => 'principal-list',
         ];

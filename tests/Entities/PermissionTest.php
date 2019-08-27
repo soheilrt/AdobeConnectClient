@@ -2,8 +2,8 @@
 
 namespace AdobeConnectClient\Tests;
 
-use AdobeConnectClient\Entities\Permission;
 use AdobeConnectClient\Contracts\ArrayableInterface;
+use AdobeConnectClient\Entities\Permission;
 use PHPUnit\Framework\TestCase;
 
 class PermissionTest extends TestCase

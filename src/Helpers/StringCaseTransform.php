@@ -18,23 +18,14 @@ abstract class StringCaseTransform
     }
 
     /**
-     * Converts the Camel Case to Dash
-     * @param string $term
+     * Converts the Camel Case to a string replace with the letter
+     * @param string $term The string to convert
+     * @param string $letter The letter to replace with
      * @return string
      */
-    public static function toDash($term)
+    protected static function camelCaseTransform($term, $letter)
     {
-        return static::camelCaseTransform(static::toCamelCase($term), '_');
-    }
-
-    /**
-     * Converts the Camel Case to Space
-     * @param string $term
-     * @return string
-     */
-    public static function toSpace($term)
-    {
-        return static::camelCaseTransform(static::toCamelCase($term), ' ');
+        return mb_strtolower(preg_replace('/([A-Z])/', $letter . '$1', $term));
     }
 
     /**
@@ -56,6 +47,26 @@ abstract class StringCaseTransform
     }
 
     /**
+     * Converts the Camel Case to Dash
+     * @param string $term
+     * @return string
+     */
+    public static function toDash($term)
+    {
+        return static::camelCaseTransform(static::toCamelCase($term), '_');
+    }
+
+    /**
+     * Converts the Camel Case to Space
+     * @param string $term
+     * @return string
+     */
+    public static function toSpace($term)
+    {
+        return static::camelCaseTransform(static::toCamelCase($term), ' ');
+    }
+
+    /**
      * Converts any string to CamelCase
      * @param string $term
      * @return string
@@ -65,16 +76,5 @@ abstract class StringCaseTransform
         $term = static::toCamelCase($term);
         $term[0] = mb_strtoupper($term[0]);
         return $term;
-    }
-
-    /**
-     * Converts the Camel Case to a string replace with the letter
-     * @param string $term The string to convert
-     * @param string $letter The letter to replace with
-     * @return string
-     */
-    protected static function camelCaseTransform($term, $letter)
-    {
-        return mb_strtolower(preg_replace('/([A-Z])/', $letter . '$1', $term));
     }
 }

@@ -4,10 +4,10 @@ namespace AdobeConnectClient\Commands;
 
 use AdobeConnectClient\Abstracts\Command;
 use AdobeConnectClient\Contracts\ArrayableInterface;
-use AdobeConnectClient\Entities\SCO;
 use AdobeConnectClient\Converter\Converter;
-use AdobeConnectClient\Helpers\StatusValidate;
+use AdobeConnectClient\Entities\SCO;
 use AdobeConnectClient\Helpers\SetEntityAttributes as FillObject;
+use AdobeConnectClient\Helpers\StatusValidate;
 
 /**
  * Get the SCO Contents from a folder or from other SCO.
@@ -33,10 +33,11 @@ class ScoContents extends Command
         $scoId,
         ArrayableInterface $filter = null,
         ArrayableInterface $sorter = null
-    ) {
+    )
+    {
         $this->parameters = [
             'action' => 'sco-contents',
-            'sco-id' => (int) $scoId,
+            'sco-id' => (int)$scoId,
         ];
 
         if ($filter) {

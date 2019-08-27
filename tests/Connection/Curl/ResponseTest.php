@@ -3,9 +3,9 @@
 
 namespace AdobeConnectClient\Tests\Connection\Curl;
 
-use AdobeConnectClient\Connection\ResponseInterface;
 use AdobeConnectClient\Connection\Curl\Response;
 use AdobeConnectClient\Connection\Curl\Stream;
+use AdobeConnectClient\Connection\ResponseInterface;
 use PHPUnit\Framework\TestCase;
 
 
@@ -35,18 +35,6 @@ class ResponseTest extends TestCase
      * @var array
      */
     protected $headers = [];
-
-    protected function setUp()
-    {
-        parent::setUp();
-
-        $this->streamBody = new Stream('Content');
-        $this->statusCode = 200;
-        $this->reasonPhrase = 'OK';
-        $this->headers['Content-Type'] = ['text/xml'];
-
-        $this->response = new Response($this->statusCode, $this->headers, $this->streamBody);
-    }
 
     public function testResponseInterface()
     {
@@ -84,5 +72,17 @@ class ResponseTest extends TestCase
     {
         $headerLine = reset($this->headers['Content-Type']);
         $this->assertEquals($headerLine, $this->response->getHeaderLine('Content-Type'));
+    }
+
+    protected function setUp()
+    {
+        parent::setUp();
+
+        $this->streamBody = new Stream('Content');
+        $this->statusCode = 200;
+        $this->reasonPhrase = 'OK';
+        $this->headers['Content-Type'] = ['text/xml'];
+
+        $this->response = new Response($this->statusCode, $this->headers, $this->streamBody);
     }
 }

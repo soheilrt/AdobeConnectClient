@@ -2,9 +2,9 @@
 
 namespace AdobeConnectClient\Tests;
 
+use AdobeConnectClient\Helpers\ValueTransform as VT;
 use DateTime;
 use DateTimeImmutable;
-use AdobeConnectClient\Helpers\ValueTransform as VT;
 use PHPUnit\Framework\TestCase;
 
 class VTTest extends TestCase
@@ -29,17 +29,17 @@ class VTTest extends TestCase
         $dateTime = new DateTime();
 
         $this->assertInstanceOf(
-           DateTimeImmutable::class,
+            DateTimeImmutable::class,
             VT::toDateTimeImmutable($dateTime)
         );
 
         $this->assertInstanceOf(
-           DateTimeImmutable::class,
+            DateTimeImmutable::class,
             VT::toDateTimeImmutable(DateTimeImmutable::createFromMutable($dateTime))
         );
 
         $this->assertInstanceOf(
-           DateTimeImmutable::class,
+            DateTimeImmutable::class,
             VT::toDateTimeImmutable($dateTime->format(DateTime::W3C))
         );
     }
@@ -47,17 +47,17 @@ class VTTest extends TestCase
     public function testToString()
     {
         $this->assertEquals(
-           'test',
+            'test',
             VT::toString('test')
         );
 
         $this->assertEquals(
-           'true',
+            'true',
             VT::toString(true)
         );
 
         $this->assertEquals(
-           'false',
+            'false',
             VT::toString(false)
         );
 
@@ -69,7 +69,7 @@ class VTTest extends TestCase
         );
 
         $this->assertEquals(
-           '1',
+            '1',
             VT::toString(1)
         );
     }

@@ -3,14 +3,14 @@
 namespace AdobeConnectClient\Abstracts;
 
 use AdobeConnectClient\Client;
-use BadMethodCallException;
-use UnexpectedValueException;
-use InvalidArgumentException;
-use DomainException;
 use AdobeConnectClient\Exceptions\InvalidException;
 use AdobeConnectClient\Exceptions\NoAccessException;
 use AdobeConnectClient\Exceptions\NoDataException;
 use AdobeConnectClient\Exceptions\TooMuchDataException;
+use BadMethodCallException;
+use DomainException;
+use InvalidArgumentException;
+use UnexpectedValueException;
 
 /**
  * The Commands base class is an abstraction to Web Service actions

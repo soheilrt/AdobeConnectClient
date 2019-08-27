@@ -3,11 +3,11 @@
 
 namespace AdobeConnectClient\Tests\Entities;
 
+use AdobeConnectClient\Entities\SCORecord;
+use DateInterval;
 use DateTime;
 use DateTimeImmutable;
-use DateInterval;
 use InvalidArgumentException;
-use AdobeConnectClient\Entities\SCORecord;
 use PHPUnit\Framework\TestCase;
 
 
@@ -23,7 +23,7 @@ class SCORecordTest extends TestCase
         $record->setScoId('1');
         $this->assertEquals(1, $record->getScoId());
     }
-    
+
     public function testSourceScoId()
     {
         $record = new SCORecord();

@@ -2,11 +2,11 @@
 
 namespace AdobeConnectClient\Connection\Curl;
 
-use SplFileInfo;
+use AdobeConnectClient\Connection\ConnectionInterface;
 use CURLFile;
 use InvalidArgumentException;
+use SplFileInfo;
 use UnexpectedValueException;
-use AdobeConnectClient\Connection\ConnectionInterface;
 
 /**
  * Connection using cURL
@@ -58,31 +58,33 @@ class Connection implements ConnectionInterface
     }
 
     /**
-     * @inheritdoc
+     * Set the cURL config.
+     *
+     * @param array $config Associative array. Items as Option => Value
      */
-    public function get(array $queryParams = [])
+    protected function setConfig(array $config)
     {
-        $ch = $this->prepareCurl($queryParams);
-        $body = curl_exec($ch);
-        $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $defaults = [
+            CURLOPT_CONNECTTIMEOUT => 120,
+            CURLOPT_TIMEOUT => 120,
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_SSL_VERIFYPEER => true,
+            CURLOPT_SSL_VERIFYHOST => 2,
+        ];
+        $this->config = $config + $defaults;
 
-        if ($body === false) {
-            $exception = new UnexpectedValueException(curl_error($ch), curl_errno($ch));
-            curl_close($ch);
-            throw $exception;
-        }
-        curl_close($ch);
-        return new Response($statusCode, $this->headers, new Stream($body));
+        // Always need this configurations
+        $this->config[CURLOPT_RETURNTRANSFER] = true;
+        $this->config[CURLOPT_FOLLOWLOCATION] = true;
+        $this->config[CURLOPT_HEADERFUNCTION] = [$this, 'extractHeader'];
     }
 
     /**
      * @inheritdoc
      */
-    public function post(array $postParams, array $queryParams = [])
+    public function get(array $queryParams = [])
     {
         $ch = $this->prepareCurl($queryParams);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $this->convertFileParams($postParams));
         $body = curl_exec($ch);
         $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
@@ -121,6 +123,26 @@ class Connection implements ConnectionInterface
         return empty($queryParams)
             ? $this->host
             : $this->host . '?' . http_build_query($queryParams, '', '&');
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function post(array $postParams, array $queryParams = [])
+    {
+        $ch = $this->prepareCurl($queryParams);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $this->convertFileParams($postParams));
+        $body = curl_exec($ch);
+        $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+        if ($body === false) {
+            $exception = new UnexpectedValueException(curl_error($ch), curl_errno($ch));
+            curl_close($ch);
+            throw $exception;
+        }
+        curl_close($ch);
+        return new Response($statusCode, $this->headers, new Stream($body));
     }
 
     /**
@@ -171,28 +193,6 @@ class Connection implements ConnectionInterface
             'path' => $path,
             'mime' => $mime
         ];
-    }
-
-    /**
-     * Set the cURL config.
-     *
-     * @param array $config Associative array. Items as Option => Value
-     */
-    protected function setConfig(array $config)
-    {
-        $defaults = [
-            CURLOPT_CONNECTTIMEOUT => 120,
-            CURLOPT_TIMEOUT => 120,
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_SSL_VERIFYPEER => true,
-            CURLOPT_SSL_VERIFYHOST => 2,
-        ];
-        $this->config = $config + $defaults;
-
-        // Always need this configurations
-        $this->config[CURLOPT_RETURNTRANSFER] = true;
-        $this->config[CURLOPT_FOLLOWLOCATION] = true;
-        $this->config[CURLOPT_HEADERFUNCTION] = [$this, 'extractHeader'];
     }
 
     /**

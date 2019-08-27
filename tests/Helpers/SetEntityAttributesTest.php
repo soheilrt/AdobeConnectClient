@@ -2,8 +2,8 @@
 
 namespace AdobeConnectClient\Tests;
 
-use AdobeConnectClient\Helpers\SetEntityAttributes;
 use AdobeConnectClient\Entities\Permission;
+use AdobeConnectClient\Helpers\SetEntityAttributes;
 use PHPUnit\Framework\TestCase;
 
 class SetEntityAttributesTest extends TestCase

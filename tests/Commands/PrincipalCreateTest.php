@@ -8,6 +8,20 @@ use AdobeConnectClient\Exceptions\NoAccessException;
 
 class PrincipalCreateTest extends TestCommandBase
 {
+    public function testNoAccess()
+    {
+        $this->userLogout();
+
+        $principal = $this->createPrincipalUser();
+
+        $command = new PrincipalCreate($principal);
+        $command->setClient($this->client);
+
+        $this->expectException(NoAccessException::class);
+
+        $command->execute();
+    }
+
     /**
      * Create a new Principal User
      *
@@ -24,34 +38,6 @@ class PrincipalCreateTest extends TestCommandBase
             ->setEmail('jakedoe@example.com')
             ->setPassword('12345')
             ->setSendEmail(false);
-    }
-
-    /**
-     * Create a new Principal Group
-     *
-     * @return Principal
-     */
-    private function createPrincipalGroup()
-    {
-        return Principal::instance()
-            ->setType(Principal::TYPE_GROUP)
-            ->setHasChildren(true)
-            ->setName('Group Test Name')
-            ->setDescription('Group Test Description');
-    }
-
-    public function testNoAccess()
-    {
-        $this->userLogout();
-
-        $principal = $this->createPrincipalUser();
-
-        $command = new PrincipalCreate($principal);
-        $command->setClient($this->client);
-
-        $this->expectException(NoAccessException::class);
-
-        $command->execute();
     }
 
     public function testCreateUser()
@@ -114,6 +100,20 @@ class PrincipalCreateTest extends TestCommandBase
         $this->assertEquals($principal->getHasChildren(), $principalCreated->getHasChildren());
         $this->assertEquals(2006403979, $principalCreated->getPrincipalId());
         $this->assertEquals(624520, $principalCreated->getAccountId());
+    }
+
+    /**
+     * Create a new Principal Group
+     *
+     * @return Principal
+     */
+    private function createPrincipalGroup()
+    {
+        return Principal::instance()
+            ->setType(Principal::TYPE_GROUP)
+            ->setHasChildren(true)
+            ->setName('Group Test Name')
+            ->setDescription('Group Test Description');
     }
 
     public function testCreateGroupWithPrincipalId()

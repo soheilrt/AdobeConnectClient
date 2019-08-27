@@ -5,8 +5,8 @@ namespace AdobeConnectClient\Commands;
 use AdobeConnectClient\Abstracts\Command;
 use AdobeConnectClient\Converter\Converter;
 use AdobeConnectClient\Exceptions\NoDataException;
-use AdobeConnectClient\Helpers\StatusValidate;
 use AdobeConnectClient\Helpers\HeaderParse;
+use AdobeConnectClient\Helpers\StatusValidate;
 
 /**
  * Call the Login action and save the session cookie.
@@ -28,8 +28,8 @@ class Login extends Command
     {
         $this->parameters = [
             'action' => 'login',
-            'login' => (string) $login,
-            'password' => (string) $password
+            'login' => (string)$login,
+            'password' => (string)$password
         ];
     }
 

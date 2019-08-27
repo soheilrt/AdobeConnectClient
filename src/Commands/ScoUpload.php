@@ -2,13 +2,13 @@
 
 namespace AdobeConnectClient\Commands;
 
-use SplFileInfo;
-use InvalidArgumentException;
 use AdobeConnectClient\Abstracts\Command;
-use AdobeConnectClient\Filter;
-use AdobeConnectClient\Entities\SCO;
 use AdobeConnectClient\Converter\Converter;
+use AdobeConnectClient\Entities\SCO;
+use AdobeConnectClient\Filter;
 use AdobeConnectClient\Helpers\StatusValidate;
+use InvalidArgumentException;
+use SplFileInfo;
 
 /**
  * Uploads a file to the server and then builds the file, if necessary.
@@ -53,8 +53,8 @@ class ScoUpload extends Command
         if (!is_resource($file) && !($file instanceof SplFileInfo)) {
             throw new InvalidArgumentException('File need be a valid resource or a SplFileInfo object');
         }
-        $this->folderId = (int) $folderId;
-        $this->resourceName = (string) $resourceName;
+        $this->folderId = (int)$folderId;
+        $this->resourceName = (string)$resourceName;
         $this->file = $file;
     }
 

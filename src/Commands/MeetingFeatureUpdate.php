@@ -5,8 +5,8 @@ namespace AdobeConnectClient\Commands;
 use AdobeConnectClient\Abstracts\Command;
 use AdobeConnectClient\Converter\Converter;
 use AdobeConnectClient\Helpers\StatusValidate;
-use AdobeConnectClient\Helpers\ValueTransform as VT;
 use AdobeConnectClient\Helpers\StringCaseTransform as SCT;
+use AdobeConnectClient\Helpers\ValueTransform as VT;
 
 /**
  * Set a feature
@@ -29,7 +29,7 @@ class MeetingFeatureUpdate extends Command
     {
         $this->parameters = [
             'action' => 'meeting-feature-update',
-            'account-id' => (int) $accountId,
+            'account-id' => (int)$accountId,
             'enable' => VT::toString($enable),
         ];
 

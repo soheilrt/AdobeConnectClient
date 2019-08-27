@@ -69,6 +69,14 @@ class Response implements ResponseInterface
     /**
      * @inheritdoc
      */
+    public function getHeaderLine($name)
+    {
+        return implode(', ', $this->getHeader($name));
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function getHeader($name)
     {
         if (isset($this->headers[$name])) {
@@ -82,14 +90,6 @@ class Response implements ResponseInterface
             }
         }
         return [];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getHeaderLine($name)
-    {
-        return implode(', ', $this->getHeader($name));
     }
 
     /**

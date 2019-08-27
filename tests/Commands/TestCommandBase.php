@@ -2,8 +2,8 @@
 
 namespace AdobeConnectClient\Tests\Commands;
 
-use AdobeConnectClient\Tests\Connection\File\Connection;
 use AdobeConnectClient\Client;
+use AdobeConnectClient\Tests\Connection\File\Connection;
 use PHPUnit\Framework\TestCase;
 
 abstract class TestCommandBase extends TestCase

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <results>
-    <status code="ok" />
+    <status code="ok"/>
     <principal-list>
-        <principal principal-id="624526" account-id="624520" type="user" has-children="false" is-primary="false" is-hidden="false" training-group-id="">
+        <principal principal-id="624526" account-id="624520" type="user" has-children="false" is-primary="false"
+                   is-hidden="false" training-group-id="">
             <name>ned mack</name>
             <login>nmack@acme.com</login>
             <email>nmack@acme.com</email>

@@ -4,9 +4,9 @@ namespace AdobeConnectClient\Commands;
 
 use AdobeConnectClient\Abstracts\Command;
 use AdobeConnectClient\Converter\Converter;
-use AdobeConnectClient\Helpers\StatusValidate;
 use AdobeConnectClient\Entities\Principal;
 use AdobeConnectClient\Helpers\SetEntityAttributes as FillObject;
+use AdobeConnectClient\Helpers\StatusValidate;
 
 /**
  * Provides information about one principal, either a user or a group.
@@ -25,7 +25,7 @@ class PrincipalInfo extends Command
      */
     public function __construct($principalId)
     {
-        $this->principalId = (int) $principalId;
+        $this->principalId = (int)$principalId;
     }
 
     /**

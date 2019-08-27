@@ -4,10 +4,10 @@ namespace AdobeConnectClient\Commands;
 
 use AdobeConnectClient\Abstracts\Command;
 use AdobeConnectClient\Converter\Converter;
-use AdobeConnectClient\Helpers\ValueTransform as VT;
-use AdobeConnectClient\Helpers\StatusValidate;
-use AdobeConnectClient\Helpers\SetEntityAttributes as FillObject;
 use AdobeConnectClient\Entities\CommonInfo as CommonInfoEntity;
+use AdobeConnectClient\Helpers\SetEntityAttributes as FillObject;
+use AdobeConnectClient\Helpers\StatusValidate;
+use AdobeConnectClient\Helpers\ValueTransform as VT;
 
 /**
  * Gets the common info

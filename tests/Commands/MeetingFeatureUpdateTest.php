@@ -3,8 +3,8 @@
 namespace AdobeConnectClient\Tests\Commands;
 
 use AdobeConnectClient\Commands\MeetingFeatureUpdate;
-use AdobeConnectClient\Exceptions\NoAccessException;
 use AdobeConnectClient\Exceptions\InvalidException;
+use AdobeConnectClient\Exceptions\NoAccessException;
 
 class MeetingFeatureUpdateTest extends TestCommandBase
 {

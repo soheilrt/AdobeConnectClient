@@ -4,8 +4,8 @@ namespace AdobeConnectClient\Tests\Commands;
 
 use AdobeConnectClient\Commands\ListRecordings;
 use AdobeConnectClient\Entities\SCORecord;
-use AdobeConnectClient\Exceptions\NoDataException;
 use AdobeConnectClient\Exceptions\NoAccessException;
+use AdobeConnectClient\Exceptions\NoDataException;
 
 class ListRecordingsTest extends TestCommandBase
 {

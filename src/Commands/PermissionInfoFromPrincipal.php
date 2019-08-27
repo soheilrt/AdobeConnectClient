@@ -3,10 +3,10 @@
 namespace AdobeConnectClient\Commands;
 
 use AdobeConnectClient\Abstracts\Command;
-use AdobeConnectClient\Entities\Permission;
 use AdobeConnectClient\Converter\Converter;
-use AdobeConnectClient\Helpers\StatusValidate;
+use AdobeConnectClient\Entities\Permission;
 use AdobeConnectClient\Helpers\SetEntityAttributes as FillObject;
+use AdobeConnectClient\Helpers\StatusValidate;
 
 /**
  * Get the Principal's permission in a SCO, Principal or Account
@@ -31,8 +31,8 @@ class PermissionInfoFromPrincipal extends Command
      */
     public function __construct($aclId, $principalId)
     {
-        $this->aclId = (int) $aclId;
-        $this->principalId = (int) $principalId;
+        $this->aclId = (int)$aclId;
+        $this->principalId = (int)$principalId;
     }
 
     /**

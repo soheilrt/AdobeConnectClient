@@ -1,4 +1,5 @@
 <?php
+
 namespace AdobeConnectClient\Helpers;
 
 /**
@@ -58,7 +59,7 @@ abstract class HeaderParse
         $result = [];
 
         foreach ($header as $value) {
-            foreach ((array) $value as $v) {
+            foreach ((array)$value as $v) {
                 if (mb_strpos($v, ',') === false) {
                     $result[] = $v;
                     continue;

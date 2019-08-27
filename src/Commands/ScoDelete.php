@@ -8,8 +8,8 @@ use AdobeConnectClient\Helpers\StatusValidate;
 
 /**
  * Deletes one or more objects (SCOs).
-*
-* More info see {@link https://helpx.adobe.com/adobe-connect/webservices/sco-delete.html}
+ *
+ * More info see {@link https://helpx.adobe.com/adobe-connect/webservices/sco-delete.html}
  */
 class ScoDelete extends Command
 {
@@ -24,7 +24,7 @@ class ScoDelete extends Command
      */
     public function __construct($scoId)
     {
-        $this->scoId = (int) $scoId;
+        $this->scoId = (int)$scoId;
     }
 
     /**

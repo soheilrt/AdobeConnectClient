@@ -3,9 +3,9 @@
 namespace AdobeConnectClient;
 
 use AdobeConnectClient\Contracts\ArrayableInterface;
-use DateTimeInterface;
 use AdobeConnectClient\Helpers\StringCaseTransform as SCT;
 use AdobeConnectClient\Helpers\ValueTransform as VT;
+use DateTimeInterface;
 
 /**
  * Create valid filters using Fluent Interface
@@ -47,6 +47,23 @@ class Filter implements ArrayableInterface
     {
         $this->setFilter('', $field, $value);
         return $this;
+    }
+
+    /**
+     * Set the Filter.
+     *
+     * @param string $operator
+     * @param string $field
+     * @param mixed $value
+     */
+    protected function setFilter($operator, $field, $value)
+    {
+        $filterName = $this->prefix
+            . '-'
+            . ($operator ? $operator . '-' : '')
+            . SCT::toHyphen($field);
+
+        $this->filters[$filterName] = VT::toString($value);
     }
 
     /**
@@ -177,22 +194,5 @@ class Filter implements ArrayableInterface
     public function toArray()
     {
         return $this->filters;
-    }
-
-    /**
-     * Set the Filter.
-     *
-     * @param string $operator
-     * @param string $field
-     * @param mixed $value
-     */
-    protected function setFilter($operator, $field, $value)
-    {
-        $filterName = $this->prefix
-            . '-'
-            . ($operator ? $operator . '-' : '')
-            . SCT::toHyphen($field);
-
-        $this->filters[$filterName] = VT::toString($value);
     }
 }

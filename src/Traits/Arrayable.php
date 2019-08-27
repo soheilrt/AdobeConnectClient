@@ -21,10 +21,10 @@ trait Arrayable
      */
     public function toArray($trimNull = true)
     {
-        if (isset($this->attributes) && is_array($this->attributes)){
-            return $this->toArrayHyphen($this->attributes,$trimNull);
+        if (isset($this->attributes) && is_array($this->attributes)) {
+            return $this->toArrayHyphen($this->attributes, $trimNull);
         }
-        return $this->toArrayHyphen($this,$trimNull);
+        return $this->toArrayHyphen($this, $trimNull);
     }
 
     private function toArrayHyphen($array, $trimNull)

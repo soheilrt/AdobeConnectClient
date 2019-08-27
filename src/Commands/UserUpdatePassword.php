@@ -28,7 +28,7 @@ class UserUpdatePassword extends Command
         $this->parameters = [
             'action' => 'user-update-pwd',
             'password' => $newPassword,
-            'user-id' => (int) $userId,
+            'user-id' => (int)$userId,
             'password-verify' => $newPassword,
         ];
 

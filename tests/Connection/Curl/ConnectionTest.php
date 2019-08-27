@@ -2,26 +2,19 @@
 
 namespace AdobeConnectClient\Tests\Connection\Curl;
 
-use InvalidArgumentException;
-use UnexpectedValueException;
-use SplFileInfo;
 use AdobeConnectClient\Connection\ConnectionInterface;
-use AdobeConnectClient\Connection\ResponseInterface;
 use AdobeConnectClient\Connection\Curl\Connection;
+use AdobeConnectClient\Connection\ResponseInterface;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
+use SplFileInfo;
+use UnexpectedValueException;
 
 class ConnectionTest extends TestCase
 {
     protected $host = 'https://test.adobeconnect.com/api/xml';
 
     protected $errorHost = 'https://error.adobeconnect.com/api/xml';
-
-    protected function setUp()
-    {
-        if (!TEST_CONNECTION_CURL) {
-            $this->markTestSkipped();
-        }
-    }
 
     public function testConnectionInterface()
     {
@@ -69,5 +62,12 @@ class ConnectionTest extends TestCase
         $this->expectException(UnexpectedValueException::class);
         $connection = new Connection($this->errorHost);
         $connection->post([]);
+    }
+
+    protected function setUp()
+    {
+        if (!TEST_CONNECTION_CURL) {
+            $this->markTestSkipped();
+        }
     }
 }
