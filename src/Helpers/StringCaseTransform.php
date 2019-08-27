@@ -8,8 +8,10 @@ namespace AdobeConnectClient\Helpers;
 abstract class StringCaseTransform
 {
     /**
-     * Converts the Camel Case to Hyphen
+     * Converts the Camel Case to Hyphen.
+     *
      * @param string $term
+     *
      * @return string
      */
     public static function toHyphen($term)
@@ -18,19 +20,23 @@ abstract class StringCaseTransform
     }
 
     /**
-     * Converts the Camel Case to a string replace with the letter
-     * @param string $term The string to convert
+     * Converts the Camel Case to a string replace with the letter.
+     *
+     * @param string $term   The string to convert
      * @param string $letter The letter to replace with
+     *
      * @return string
      */
     protected static function camelCaseTransform($term, $letter)
     {
-        return mb_strtolower(preg_replace('/([A-Z])/', $letter . '$1', $term));
+        return mb_strtolower(preg_replace('/([A-Z])/', $letter.'$1', $term));
     }
 
     /**
-     * Converts any string to camelCase
+     * Converts any string to camelCase.
+     *
      * @param string $term
+     *
      * @return string
      */
     public static function toCamelCase($term)
@@ -43,12 +49,15 @@ abstract class StringCaseTransform
             $term
         );
         $term[0] = mb_strtolower($term[0]);
+
         return $term;
     }
 
     /**
-     * Converts the Camel Case to Dash
+     * Converts the Camel Case to Dash.
+     *
      * @param string $term
+     *
      * @return string
      */
     public static function toDash($term)
@@ -57,8 +66,10 @@ abstract class StringCaseTransform
     }
 
     /**
-     * Converts the Camel Case to Space
+     * Converts the Camel Case to Space.
+     *
      * @param string $term
+     *
      * @return string
      */
     public static function toSpace($term)
@@ -67,14 +78,17 @@ abstract class StringCaseTransform
     }
 
     /**
-     * Converts any string to CamelCase
+     * Converts any string to CamelCase.
+     *
      * @param string $term
+     *
      * @return string
      */
     public static function toUpperCamelCase($term)
     {
         $term = static::toCamelCase($term);
         $term[0] = mb_strtoupper($term[0]);
+
         return $term;
     }
 }

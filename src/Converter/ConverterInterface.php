@@ -8,7 +8,7 @@ use InvalidArgumentException;
 interface ConverterInterface
 {
     /**
-     * Converts the data into an associative array with camelCase keys
+     * Converts the data into an associative array with camelCase keys.
      *
      * Example:
      *     [
@@ -27,8 +27,10 @@ interface ConverterInterface
      *     ];
      *
      * @param ResponseInterface $response
-     * @return array
+     *
      * @throws InvalidArgumentException if data is invalid
+     *
+     * @return array
      */
     public static function convert(ResponseInterface $response);
 }

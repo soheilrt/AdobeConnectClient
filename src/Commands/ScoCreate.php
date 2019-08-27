@@ -34,7 +34,7 @@ class ScoCreate extends Command
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      *
      * @return SCO
      */
@@ -55,6 +55,7 @@ class ScoCreate extends Command
 
         $sco = new SCO();
         FillObject::setAttributes($sco, $response['sco']);
+
         return $sco;
     }
 }

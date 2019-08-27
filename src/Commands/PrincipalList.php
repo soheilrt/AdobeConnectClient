@@ -22,7 +22,7 @@ class PrincipalList extends Command
     protected $parameters;
 
     /**
-     * @param int $groupId The Principal ID of a group. If indicate will be possible filter by isMember.
+     * @param int                     $groupId The Principal ID of a group. If indicate will be possible filter by isMember.
      * @param ArrayableInterface|null $filter
      * @param ArrayableInterface|null $sorter
      */
@@ -30,8 +30,7 @@ class PrincipalList extends Command
         $groupId = 0,
         ArrayableInterface $filter = null,
         ArrayableInterface $sorter = null
-    )
-    {
+    ) {
         $this->parameters = [
             'action' => 'principal-list',
         ];
@@ -50,7 +49,7 @@ class PrincipalList extends Command
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      *
      * @return Principal[]
      */

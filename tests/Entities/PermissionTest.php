@@ -8,7 +8,6 @@ use PHPUnit\Framework\TestCase;
 
 class PermissionTest extends TestCase
 {
-
     public function testInstance()
     {
         $this->assertInstanceOf(Permission::class, Permission::instance());
@@ -58,9 +57,9 @@ class PermissionTest extends TestCase
 
         $this->assertEquals(
             [
-                'acl-id' => 1,
+                'acl-id'        => 1,
                 'permission-id' => Permission::MEETING_ANYONE_WITH_URL,
-                'principal-id' => Permission::MEETING_PRINCIPAL_PUBLIC_ACCESS
+                'principal-id'  => Permission::MEETING_PRINCIPAL_PUBLIC_ACCESS,
             ],
             $permission->toArray()
         );

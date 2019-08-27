@@ -12,9 +12,10 @@ use DateTimeInterface;
 abstract class ValueTransform
 {
     /**
-     * Converts arbitrary value into string
+     * Converts arbitrary value into string.
      *
      * @param mixed $value
+     *
      * @return string
      */
     public static function toString($value)
@@ -31,15 +32,17 @@ abstract class ValueTransform
             return $value->format(DateTime::W3C);
         }
 
-        return (string)$value;
+        return (string) $value;
     }
 
     /**
-     * Converts arbitrary value into DateTimeImmutable
+     * Converts arbitrary value into DateTimeImmutable.
      *
      * @param mixed $value
-     * @return DateTimeImmutable
+     *
      * @throws \Exception
+     *
+     * @return DateTimeImmutable
      */
     public static function toDateTimeImmutable($value)
     {
@@ -51,13 +54,14 @@ abstract class ValueTransform
             return DateTimeImmutable::createFromMutable($value);
         }
 
-        return new DateTimeImmutable((string)$value);
+        return new DateTimeImmutable((string) $value);
     }
 
     /**
      * Transform the value into a boolean type.
      *
      * @param mixed $value The value to transform
+     *
      * @return bool
      */
     public static function toBool($value)

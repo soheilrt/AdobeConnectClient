@@ -9,7 +9,7 @@ use AdobeConnectClient\Helpers\SetEntityAttributes as FillObject;
 use AdobeConnectClient\Helpers\StatusValidate;
 
 /**
- * Gets the Sco info
+ * Gets the Sco info.
  *
  * More info see {@link https://helpx.adobe.com/adobe-connect/webservices/sco-info.html}
  */
@@ -29,7 +29,7 @@ class ScoInfo extends Command
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      *
      * @return SCO
      */
@@ -37,14 +37,15 @@ class ScoInfo extends Command
     {
         $response = Converter::convert(
             $this->client->doGet([
-                'action' => 'sco-info',
-                'sco-id' => $this->scoId,
-                'session' => $this->client->getSession()
+                'action'  => 'sco-info',
+                'sco-id'  => $this->scoId,
+                'session' => $this->client->getSession(),
             ])
         );
         StatusValidate::validate($response['status']);
         $sco = new SCO();
         FillObject::setAttributes($sco, $response['sco']);
+
         return $sco;
     }
 }

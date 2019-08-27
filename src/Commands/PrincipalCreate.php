@@ -34,7 +34,7 @@ class PrincipalCreate extends Command
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      *
      * @return Principal
      */
@@ -54,6 +54,7 @@ class PrincipalCreate extends Command
 
         $principal = new Principal();
         FillObject::setAttributes($principal, $response['principal']);
+
         return $principal;
     }
 }

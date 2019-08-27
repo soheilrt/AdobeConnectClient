@@ -9,14 +9,15 @@ use AdobeConnectClient\Exceptions\TooMuchDataException;
 use DomainException;
 
 /**
- * Validate the status code
+ * Validate the status code.
  */
 abstract class StatusValidate
 {
     /**
-     * Validate the status code and throw an exception if something is wrong
+     * Validate the status code and throw an exception if something is wrong.
      *
      * @param array $status
+     *
      * @throws InvalidException
      * @throws NoAccessException
      * @throws NoDataException
@@ -31,16 +32,15 @@ abstract class StatusValidate
 
             case 'invalid':
                 $invalid = $status['invalid'];
+
                 throw new InvalidException(
                     "{$invalid['field']} {$invalid['subcode']}"
                 );
 
             case 'no-access':
                 throw new NoAccessException($status['subcode']);
-
             case 'no-data':
                 throw new NoDataException();
-
             case 'too-much-data':
                 throw new TooMuchDataException();
         }

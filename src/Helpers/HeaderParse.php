@@ -3,7 +3,7 @@
 namespace AdobeConnectClient\Helpers;
 
 /**
- * Parses a Header
+ * Parses a Header.
  *
  * See {@link https://github.com/guzzle/psr7}
  */
@@ -16,6 +16,7 @@ abstract class HeaderParse
      * contains a key, this function will inject a key with a '' string value.
      *
      * @param string|array $header Header to parse into components.
+     *
      * @return array Returns the parsed header values.
      */
     public static function parse($header)
@@ -41,6 +42,7 @@ abstract class HeaderParse
                 $params[] = $part;
             }
         }
+
         return $params;
     }
 
@@ -49,6 +51,7 @@ abstract class HeaderParse
      * headers into an array of headers with no comma separated values.
      *
      * @param string|array $header Header to normalize.
+     *
      * @return array Returns the normalized header field values.
      */
     private static function normalize($header)
@@ -59,7 +62,7 @@ abstract class HeaderParse
         $result = [];
 
         foreach ($header as $value) {
-            foreach ((array)$value as $v) {
+            foreach ((array) $value as $v) {
                 if (mb_strpos($v, ',') === false) {
                     $result[] = $v;
                     continue;
@@ -69,6 +72,7 @@ abstract class HeaderParse
                 }
             }
         }
+
         return $result;
     }
 }

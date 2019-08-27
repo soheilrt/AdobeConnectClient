@@ -17,11 +17,11 @@ class StatusValidateTest extends TestCase
         $this->expectException(InvalidException::class);
 
         $status = [
-            'code' => 'invalid',
+            'code'    => 'invalid',
             'invalid' => [
-                'field' => 'login',
-                'subcode' => 'Missing login'
-            ]
+                'field'   => 'login',
+                'subcode' => 'Missing login',
+            ],
         ];
 
         StatusValidate::validate($status);
@@ -32,8 +32,8 @@ class StatusValidateTest extends TestCase
         $this->expectException(NoAccessException::class);
 
         $status = [
-            'code' => 'no-access',
-            'subcode' => 'Access Denied'
+            'code'    => 'no-access',
+            'subcode' => 'Access Denied',
         ];
 
         StatusValidate::validate($status);
@@ -44,7 +44,7 @@ class StatusValidateTest extends TestCase
         $this->expectException(NoDataException::class);
 
         $status = [
-            'code' => 'no-data'
+            'code' => 'no-data',
         ];
 
         StatusValidate::validate($status);
@@ -55,7 +55,7 @@ class StatusValidateTest extends TestCase
         $this->expectException(TooMuchDataException::class);
 
         $status = [
-            'code' => 'too-much-data'
+            'code' => 'too-much-data',
         ];
 
         StatusValidate::validate($status);
@@ -64,7 +64,7 @@ class StatusValidateTest extends TestCase
     public function testValid()
     {
         $status = [
-            'code' => 'ok'
+            'code' => 'ok',
         ];
 
         $this->assertNull(StatusValidate::validate($status));
@@ -75,11 +75,9 @@ class StatusValidateTest extends TestCase
         $this->expectException(DomainException::class);
 
         $status = [
-            'code' => 'status-code-not-implemented'
+            'code' => 'status-code-not-implemented',
         ];
 
         StatusValidate::validate($status);
     }
-
-
 }

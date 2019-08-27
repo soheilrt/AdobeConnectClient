@@ -16,9 +16,9 @@ class ConverterTest extends TestCase
         $connection = new Connection();
 
         $response = $connection->get([
-            'action' => 'list-recordings',
+            'action'    => 'list-recordings',
             'folder-id' => 1,
-            'session' => $connection->getSessionString()
+            'session'   => $connection->getSessionString(),
         ]);
 
         $rawData = Converter::convert($response);
@@ -32,7 +32,7 @@ class ConverterTest extends TestCase
         $response = new Response(
             200,
             [
-                'Content-Type' => ['application/json']
+                'Content-Type' => ['application/json'],
             ],
             new Stream('')
         );

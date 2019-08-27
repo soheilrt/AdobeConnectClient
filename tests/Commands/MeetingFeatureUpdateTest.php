@@ -34,7 +34,6 @@ class MeetingFeatureUpdateTest extends TestCommandBase
     {
         $this->userLogin();
 
-
         $command = new MeetingFeatureUpdate(1, 'invalid-feature', true);
         $command->setClient($this->client);
 

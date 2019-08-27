@@ -32,7 +32,7 @@ class SorterTest extends TestCase
         $this->assertEquals(
             [
                 'sort1-date-start' => 'asc',
-                'sort2-name' => 'asc'
+                'sort2-name'       => 'asc',
             ],
             $sorter->toArray()
         );
@@ -52,7 +52,7 @@ class SorterTest extends TestCase
         $this->assertEquals(
             [
                 'sort1-date-start' => 'desc',
-                'sort2-name' => 'desc'
+                'sort2-name'       => 'desc',
             ],
             $sorter->toArray()
         );
@@ -67,7 +67,7 @@ class SorterTest extends TestCase
         $this->assertEquals(
             [
                 'sort1-date-start' => 'asc',
-                'sort2-name' => 'desc'
+                'sort2-name'       => 'desc',
             ],
             $sorter->toArray()
         );
@@ -77,6 +77,7 @@ class SorterTest extends TestCase
 
     /**
      * @depends testAscDesc
+     *
      * @param Sorter $sorter
      */
     public function testRemoveField(Sorter $sorter)

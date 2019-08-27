@@ -15,7 +15,6 @@ use AdobeConnectClient\Helpers\StatusValidate;
  * Use the filter to reduce excessive data returns.
  *
  * More info see {@link https://helpx.adobe.com/content/help/en/adobe-connect/webservices/sco-contents.html}
- *
  */
 class ScoContents extends Command
 {
@@ -25,7 +24,7 @@ class ScoContents extends Command
     protected $parameters;
 
     /**
-     * @param int $scoId
+     * @param int                     $scoId
      * @param ArrayableInterface|null $filter
      * @param ArrayableInterface|null $sorter
      */
@@ -33,11 +32,10 @@ class ScoContents extends Command
         $scoId,
         ArrayableInterface $filter = null,
         ArrayableInterface $sorter = null
-    )
-    {
+    ) {
         $this->parameters = [
             'action' => 'sco-contents',
-            'sco-id' => (int)$scoId,
+            'sco-id' => (int) $scoId,
         ];
 
         if ($filter) {
@@ -50,7 +48,7 @@ class ScoContents extends Command
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      *
      * @return SCO[]
      */
@@ -66,7 +64,7 @@ class ScoContents extends Command
         $scos = [];
 
         foreach ($response['scos'] as $scoAttributes) {
-            $sco = new SCO;
+            $sco = new SCO();
             FillObject::setAttributes($sco, $scoAttributes);
             $scos[] = $sco;
         }

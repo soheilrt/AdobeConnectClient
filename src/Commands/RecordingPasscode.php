@@ -25,17 +25,17 @@ class RecordingPasscode extends Command
     protected $passcode;
 
     /**
-     * @param int $scoId
+     * @param int    $scoId
      * @param string $passcode
      */
     public function __construct($scoId, $passcode)
     {
-        $this->scoId = (int)$scoId;
-        $this->passcode = (string)$passcode;
+        $this->scoId = (int) $scoId;
+        $this->passcode = (string) $passcode;
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      *
      * @return bool
      */

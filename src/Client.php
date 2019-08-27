@@ -19,7 +19,7 @@ use ReflectionException;
 use UnexpectedValueException;
 
 /**
- * The Client to Adobe Connect API
+ * The Client to Adobe Connect API.
  *
  * @method bool login(string $login, string $password) Login in the Service.
  * @method bool logout() Ends the service session
@@ -87,13 +87,15 @@ class Client
      * Instantiates the Command and execute it.
      *
      * @param string $commandName
-     * @param array $arguments
-     * @return mixed
+     * @param array  $arguments
+     *
      * @throws ReflectionException
+     *
+     * @return mixed
      */
     public function __call($commandName, array $arguments = [])
     {
-        $className = '\\AdobeConnectClient\\Commands\\' . SCT::toUpperCamelCase($commandName);
+        $className = '\\AdobeConnectClient\\Commands\\'.SCT::toUpperCamelCase($commandName);
 
         if (!class_exists($className)) {
             throw new BadMethodCallException(sprintf('"%s" is not defined as command', $commandName));
@@ -111,10 +113,11 @@ class Client
     }
 
     /**
-     *
      * @param array $parameters
-     * @return ResponseInterface
+     *
      * @throws UnexpectedValueException
+     *
+     * @return ResponseInterface
      */
     public function doGet(array $parameters)
     {
@@ -122,11 +125,12 @@ class Client
     }
 
     /**
-     *
      * @param array $postParams
      * @param array $queryParams
-     * @return ResponseInterface
+     *
      * @throws UnexpectedValueException
+     *
+     * @return ResponseInterface
      */
     public function doPost(array $postParams, array $queryParams = [])
     {

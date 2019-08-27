@@ -34,7 +34,6 @@ class GroupMembershipUpdateTest extends TestCommandBase
     {
         $this->userLogin();
 
-
         $command = new GroupMembershipUpdate(1, 0, true);
         $command->setClient($this->client);
 

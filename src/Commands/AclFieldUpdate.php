@@ -22,19 +22,18 @@ class AclFieldUpdate extends Command
     protected $parameters;
 
     /**
-     *
-     * @param int $aclId
-     * @param string $fieldId
-     * @param mixed $value
+     * @param int                     $aclId
+     * @param string                  $fieldId
+     * @param mixed                   $value
      * @param ArrayableInterface|null $extraParams
      */
     public function __construct($aclId, $fieldId, $value, ArrayableInterface $extraParams = null)
     {
         $this->parameters = [
-            'action' => 'acl-field-update',
-            'acl-id' => $aclId,
+            'action'   => 'acl-field-update',
+            'acl-id'   => $aclId,
             'field-id' => SCT::toHyphen($fieldId),
-            'value' => VT::toString($value),
+            'value'    => VT::toString($value),
         ];
 
         if ($extraParams) {
@@ -43,7 +42,7 @@ class AclFieldUpdate extends Command
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      *
      * @return bool
      */
@@ -55,6 +54,7 @@ class AclFieldUpdate extends Command
             )
         );
         StatusValidate::validate($response['status']);
+
         return true;
     }
 }

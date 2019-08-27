@@ -9,7 +9,7 @@ use AdobeConnectClient\Helpers\StringCaseTransform as SCT;
 use AdobeConnectClient\Helpers\ValueTransform as VT;
 
 /**
- * Set a feature
+ * Set a feature.
  *
  * More info see {@link https://helpx.adobe.com/adobe-connect/webservices/meeting-feature-update.html}
  */
@@ -21,29 +21,29 @@ class MeetingFeatureUpdate extends Command
     protected $parameters;
 
     /**
-     * @param int $accountId
+     * @param int    $accountId
      * @param string $featureId
-     * @param bool $enable
+     * @param bool   $enable
      */
     public function __construct($accountId, $featureId, $enable)
     {
         $this->parameters = [
-            'action' => 'meeting-feature-update',
-            'account-id' => (int)$accountId,
-            'enable' => VT::toString($enable),
+            'action'     => 'meeting-feature-update',
+            'account-id' => (int) $accountId,
+            'enable'     => VT::toString($enable),
         ];
 
         $featureId = SCT::toHyphen($featureId);
 
         if (mb_strpos($featureId, 'fid-') === false) {
-            $featureId = 'fid-' . $featureId;
+            $featureId = 'fid-'.$featureId;
         }
 
         $this->parameters['feature-id'] = $featureId;
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      *
      * @return bool
      */
@@ -55,6 +55,7 @@ class MeetingFeatureUpdate extends Command
             )
         );
         StatusValidate::validate($response['status']);
+
         return true;
     }
 }

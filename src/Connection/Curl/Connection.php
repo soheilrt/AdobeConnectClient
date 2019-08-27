@@ -9,7 +9,7 @@ use SplFileInfo;
 use UnexpectedValueException;
 
 /**
- * Connection using cURL
+ * Connection using cURL.
  */
 class Connection implements ConnectionInterface
 {
@@ -19,7 +19,7 @@ class Connection implements ConnectionInterface
     protected $config = [];
 
     /**
-     * @var string $host The host URL
+     * @var string The host URL
      */
     protected $host = '';
 
@@ -31,8 +31,9 @@ class Connection implements ConnectionInterface
     /**
      * Create the instance using a host URL and config.
      *
-     * @param string $host The Host URL
-     * @param array $config An array to config cURL. Use CURLOPT_* as index
+     * @param string $host   The Host URL
+     * @param array  $config An array to config cURL. Use CURLOPT_* as index
+     *
      * @throws InvalidArgumentException if $host is not a valid URL with scheme
      */
     public function __construct($host, array $config = [])
@@ -45,6 +46,7 @@ class Connection implements ConnectionInterface
      * Set the Host URL.
      *
      * @param string $host The Host URL
+     *
      * @throws InvalidArgumentException if $host is not a valid URL with scheme
      */
     public function setHost($host)
@@ -54,7 +56,7 @@ class Connection implements ConnectionInterface
         if (!filter_var($host, FILTER_VALIDATE_URL, FILTER_FLAG_SCHEME_REQUIRED)) {
             throw new InvalidArgumentException('Connection Host must be a valid URL with scheme');
         }
-        $this->host = strpos($host, '/api/xml') === false ? $host . '/api/xml' : $host;
+        $this->host = strpos($host, '/api/xml') === false ? $host.'/api/xml' : $host;
     }
 
     /**
@@ -66,8 +68,8 @@ class Connection implements ConnectionInterface
     {
         $defaults = [
             CURLOPT_CONNECTTIMEOUT => 120,
-            CURLOPT_TIMEOUT => 120,
-            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT        => 120,
+            CURLOPT_MAXREDIRS      => 10,
             CURLOPT_SSL_VERIFYPEER => true,
             CURLOPT_SSL_VERIFYHOST => 2,
         ];
@@ -80,7 +82,7 @@ class Connection implements ConnectionInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function get(array $queryParams = [])
     {
@@ -91,9 +93,11 @@ class Connection implements ConnectionInterface
         if ($body === false) {
             $exception = new UnexpectedValueException(curl_error($ch), curl_errno($ch));
             curl_close($ch);
+
             throw $exception;
         }
         curl_close($ch);
+
         return new Response($statusCode, $this->headers, new Stream($body));
     }
 
@@ -101,6 +105,7 @@ class Connection implements ConnectionInterface
      * Reset the temporary headers and prepare the cURL.
      *
      * @param array $queryParams Associative array to add params in URL
+     *
      * @return resource A cURL resource
      */
     protected function prepareCurl(array $queryParams = [])
@@ -109,6 +114,7 @@ class Connection implements ConnectionInterface
 
         $ch = curl_init($this->getFullURL($queryParams));
         curl_setopt_array($ch, $this->config);
+
         return $ch;
     }
 
@@ -116,17 +122,18 @@ class Connection implements ConnectionInterface
      * Get the full URL with query parameters.
      *
      * @param array $queryParams Associative array to add params in URL
+     *
      * @return string
      */
     protected function getFullURL(array $queryParams)
     {
         return empty($queryParams)
             ? $this->host
-            : $this->host . '?' . http_build_query($queryParams, '', '&');
+            : $this->host.'?'.http_build_query($queryParams, '', '&');
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function post(array $postParams, array $queryParams = [])
     {
@@ -139,9 +146,11 @@ class Connection implements ConnectionInterface
         if ($body === false) {
             $exception = new UnexpectedValueException(curl_error($ch), curl_errno($ch));
             curl_close($ch);
+
             throw $exception;
         }
         curl_close($ch);
+
         return new Response($statusCode, $this->headers, new Stream($body));
     }
 
@@ -149,6 +158,7 @@ class Connection implements ConnectionInterface
      * Convert stream file and SplFileInfo in CURLFile.
      *
      * @param array $params Associative array of parameters
+     *
      * @return array
      */
     protected function convertFileParams(array $params)
@@ -161,6 +171,7 @@ class Connection implements ConnectionInterface
             }
             $params[$param] = new CURLFile($fileInfo['path'], $fileInfo['mime']);
         }
+
         return $params;
     }
 
@@ -170,6 +181,7 @@ class Connection implements ConnectionInterface
      * If it's a stream file or \SplFileInfo returns an object with path and mime.
      *
      * @param resource|SplFileInfo $item A stream file or SplFileInfo object
+     *
      * @return array|null Returns null if it's not a valid stream file or SplFileInfo
      */
     protected function fileInfo($item)
@@ -178,7 +190,7 @@ class Connection implements ConnectionInterface
             $streamMeta = stream_get_meta_data($item);
 
             if ($streamMeta['wrapper_type'] !== 'plainfile') {
-                return null;
+                return;
             }
             $path = $streamMeta['uri'];
             $mime = mime_content_type($path);
@@ -186,12 +198,12 @@ class Connection implements ConnectionInterface
             $path = $item->getPathname();
             $mime = mime_content_type($path);
         } else {
-            return null;
+            return;
         }
 
         return [
             'path' => $path,
-            'mime' => $mime
+            'mime' => $mime,
         ];
     }
 
@@ -201,7 +213,8 @@ class Connection implements ConnectionInterface
      * This method is called by option CURLOPT_HEADERFUNCTION.
      *
      * @param resource $curlResource
-     * @param string $headerLine
+     * @param string   $headerLine
+     *
      * @return int The size of header line
      */
     protected function extractHeader($curlResource, $headerLine)
@@ -225,6 +238,7 @@ class Connection implements ConnectionInterface
             return $headerSize;
         }
         $this->headers[$header] = [trim(substr($headerLine, $pos + 1))];
+
         return $headerSize;
     }
 }

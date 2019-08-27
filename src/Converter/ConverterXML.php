@@ -9,7 +9,7 @@ use InvalidArgumentException;
 class ConverterXML implements ConverterInterface
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function convert(ResponseInterface $response)
     {
@@ -41,9 +41,10 @@ class ConverterXML implements ConverterInterface
     }
 
     /**
-     * Recursive transform the array
+     * Recursive transform the array.
      *
      * @param array $arr The array piece
+     *
      * @return array
      */
     protected static function normalize($arr)

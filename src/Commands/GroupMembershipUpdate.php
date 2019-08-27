@@ -20,22 +20,22 @@ class GroupMembershipUpdate extends Command
     protected $parameters;
 
     /**
-     * @param int $groupId
-     * @param int $principalId
+     * @param int  $groupId
+     * @param int  $principalId
      * @param bool $isMember
      */
     public function __construct($groupId, $principalId, $isMember)
     {
         $this->parameters = [
-            'action' => 'group-membership-update',
-            'group-id' => (int)$groupId,
-            'principal-id' => (int)$principalId,
-            'is-member' => VT::toString($isMember),
+            'action'       => 'group-membership-update',
+            'group-id'     => (int) $groupId,
+            'principal-id' => (int) $principalId,
+            'is-member'    => VT::toString($isMember),
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      *
      * @return bool
      */
@@ -47,6 +47,7 @@ class GroupMembershipUpdate extends Command
             )
         );
         StatusValidate::validate($response['status']);
+
         return true;
     }
 }

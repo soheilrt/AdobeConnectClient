@@ -23,11 +23,11 @@ class PrincipalDelete extends Command
      */
     public function __construct($principalId)
     {
-        $this->principalId = (int)$principalId;
+        $this->principalId = (int) $principalId;
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      *
      * @return bool
      */
@@ -35,9 +35,9 @@ class PrincipalDelete extends Command
     {
         $response = Converter::convert(
             $this->client->doGet([
-                'action' => 'principals-delete',
+                'action'       => 'principals-delete',
                 'principal-id' => $this->principalId,
-                'session' => $this->client->getSession()
+                'session'      => $this->client->getSession(),
             ])
         );
 

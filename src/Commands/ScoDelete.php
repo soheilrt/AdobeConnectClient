@@ -19,16 +19,15 @@ class ScoDelete extends Command
     protected $scoId;
 
     /**
-     *
      * @param int $scoId The SCO ID or Folder ID
      */
     public function __construct($scoId)
     {
-        $this->scoId = (int)$scoId;
+        $this->scoId = (int) $scoId;
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      *
      * @return bool
      */
@@ -36,9 +35,9 @@ class ScoDelete extends Command
     {
         $response = Converter::convert(
             $this->client->doGet([
-                'action' => 'sco-delete',
-                'sco-id' => $this->scoId,
-                'session' => $this->client->getSession()
+                'action'  => 'sco-delete',
+                'sco-id'  => $this->scoId,
+                'session' => $this->client->getSession(),
             ])
         );
 

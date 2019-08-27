@@ -17,7 +17,7 @@ class Connection implements ConnectionInterface
 {
     private $contentType = 'text/xml';
 
-    private $resources = __DIR__ . '/Resources/';
+    private $resources = __DIR__.'/Resources/';
 
     private $session = 'na9breezx3385yw9ymhhzb5p';
 
@@ -25,7 +25,7 @@ class Connection implements ConnectionInterface
 
     public function __construct()
     {
-        $this->routes = include __DIR__ . '/routes.php';
+        $this->routes = include __DIR__.'/routes.php';
     }
 
     public function getSessionString()
@@ -34,7 +34,7 @@ class Connection implements ConnectionInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function get(array $queryParams = [])
     {
@@ -44,7 +44,7 @@ class Connection implements ConnectionInterface
             200,
             [
                 'Content-Type' => [$this->contentType],
-                'Set-Cookie' => ["BREEZESESSION={$this->session};HttpOnly;domain=.adobeconnect.com;secure;path=/"]
+                'Set-Cookie'   => ["BREEZESESSION={$this->session};HttpOnly;domain=.adobeconnect.com;secure;path=/"],
             ],
             new Stream(file_get_contents($resourceFile))
         );
@@ -60,11 +60,11 @@ class Connection implements ConnectionInterface
             trigger_error("Resource to {$action} with resource ID {$resourceId} not found.", E_USER_ERROR);
         }
 
-        return $this->resources . $this->routes[$action][$resourceId] . '.xml';
+        return $this->resources.$this->routes[$action][$resourceId].'.xml';
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function post(array $postParams, array $queryParams = [])
     {
@@ -74,7 +74,7 @@ class Connection implements ConnectionInterface
             200,
             [
                 'Content-Type' => ['text/xml'],
-                'Set-Cookie' => ["BREEZESESSION={$this->session};HttpOnly;domain=.adobeconnect.com;secure;path=/"]
+                'Set-Cookie'   => ["BREEZESESSION={$this->session};HttpOnly;domain=.adobeconnect.com;secure;path=/"],
             ],
             new Stream(file_get_contents($resourceFile))
         );

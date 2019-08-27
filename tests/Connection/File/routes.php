@@ -1,7 +1,7 @@
 <?php
 
 /**
- * The resourceId is a sha1 from queryParams after serialize
+ * The resourceId is a sha1 from queryParams after serialize.
  *
  * @var array [string action => [string resourceId => string FileName]
  */
@@ -140,11 +140,11 @@ return [
         'c9eb1fb91abdf561210c6ed6070f86d955f3bae6' => 'sco-upload',
         '02928b278f68e09e51b613af7204784c2cd23d9a' => 'sco-upload',
         '79e1cee478932205182b779d19852ee08f733731' => 'sco-upload',
-        '59090e70781019b8a7152acec58c7e10db53f42b' => 'sco-upload'
+        '59090e70781019b8a7152acec58c7e10db53f42b' => 'sco-upload',
     ],
 
-    "sco-shortcuts" => [
-        "1599eb3ff5957e32299c9c96b2effac6fa926a91" => 'sco-shortcuts',
-        "07b715a4676ef0d75bdfca59c299fa404eed1b26" => 'status-no-access'
-    ]
+    'sco-shortcuts' => [
+        '1599eb3ff5957e32299c9c96b2effac6fa926a91' => 'sco-shortcuts',
+        '07b715a4676ef0d75bdfca59c299fa404eed1b26' => 'status-no-access',
+    ],
 ];

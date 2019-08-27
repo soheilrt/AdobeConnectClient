@@ -9,7 +9,7 @@ use AdobeConnectClient\Helpers\SetEntityAttributes as FillObject;
 use AdobeConnectClient\Helpers\StatusValidate;
 
 /**
- * Provides a list of recordings (FLV and MP4) for a specified folder or SCO
+ * Provides a list of recordings (FLV and MP4) for a specified folder or SCO.
  *
  * More info see {@link https://helpx.adobe.com/adobe-connect/webservices/list-recordings.html}
  */
@@ -25,11 +25,11 @@ class ListRecordings extends Command
      */
     public function __construct($folderId)
     {
-        $this->folderId = (int)$folderId;
+        $this->folderId = (int) $folderId;
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      *
      * @return SCORecord[]
      */
@@ -37,9 +37,9 @@ class ListRecordings extends Command
     {
         $response = Converter::convert(
             $this->client->doGet([
-                'action' => 'list-recordings',
+                'action'    => 'list-recordings',
                 'folder-id' => $this->folderId,
-                'session' => $this->client->getSession()
+                'session'   => $this->client->getSession(),
             ])
         );
 

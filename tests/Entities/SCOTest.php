@@ -9,7 +9,6 @@ use DateTime;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 
-
 class SCOTest extends TestCase
 {
     public function testInstance()
@@ -316,10 +315,10 @@ class SCOTest extends TestCase
 
         $this->assertEquals(
             [
-                'name' => 'Name',
+                'name'       => 'Name',
                 'date-begin' => $dateBegin->format(DateTime::W3C),
-                'date-end' => $dateEnd->format(DateTime::W3C),
-                'type' => SCO::TYPE_MEETING
+                'date-end'   => $dateEnd->format(DateTime::W3C),
+                'type'       => SCO::TYPE_MEETING,
             ],
             $sco->toArray()
         );

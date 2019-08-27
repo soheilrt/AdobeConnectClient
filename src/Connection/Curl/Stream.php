@@ -15,7 +15,7 @@ class Stream implements StreamInterface
     protected $content = '';
 
     /**
-     * Create the Stream
+     * Create the Stream.
      *
      * @param string $content
      */
@@ -25,7 +25,7 @@ class Stream implements StreamInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function __toString()
     {

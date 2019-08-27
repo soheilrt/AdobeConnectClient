@@ -334,15 +334,15 @@ class PrincipalTest extends TestCase
 
         $this->assertEquals(
             [
-                'type' => Principal::TYPE_USER,
+                'type'         => Principal::TYPE_USER,
                 'has-children' => 'false',
                 'principal-id' => '1',
-                'first-name' => 'FirstName',
-                'last-name' => 'LasName',
-                'login' => 'Login',
-                'password' => 'Password',
-                'email' => 'E-Mail',
-                'send-email' => 'false',
+                'first-name'   => 'FirstName',
+                'last-name'    => 'LasName',
+                'login'        => 'Login',
+                'password'     => 'Password',
+                'email'        => 'E-Mail',
+                'send-email'   => 'false',
             ],
             $principal->toArray()
         );
@@ -365,11 +365,11 @@ class PrincipalTest extends TestCase
 
         $this->assertEquals(
             [
-                'type' => Principal::TYPE_GROUP,
+                'type'         => Principal::TYPE_GROUP,
                 'has-children' => 'true',
                 'principal-id' => '1',
-                'name' => 'Name',
-                'description' => 'Description',
+                'name'         => 'Name',
+                'description'  => 'Description',
             ],
             $principal->toArray()
         );
@@ -406,11 +406,11 @@ class PrincipalTest extends TestCase
         $this->assertEquals(
             [
                 'Foo',
-                'Bar'
+                'Bar',
             ],
             [
                 $principal->getFirstName(),
-                $principal->getLastName()
+                $principal->getLastName(),
             ]
         );
     }

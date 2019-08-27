@@ -32,7 +32,7 @@ class PrincipalUpdate extends Command
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      *
      * @return bool
      */
@@ -50,6 +50,7 @@ class PrincipalUpdate extends Command
             )
         );
         StatusValidate::validate($response['status']);
+
         return true;
     }
 }

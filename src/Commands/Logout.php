@@ -5,24 +5,25 @@ namespace AdobeConnectClient\Commands;
 use AdobeConnectClient\Abstracts\Command;
 
 /**
- * Ends the session
+ * Ends the session.
  *
  * More info see {@link https://helpx.adobe.com/content/help/en/adobe-connect/webservices/logout.html}
  */
 class Logout extends Command
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      *
      * @return bool
      */
     protected function process()
     {
         $this->client->doGet([
-            'action' => 'logout',
-            'session' => $this->client->getSession()
+            'action'  => 'logout',
+            'session' => $this->client->getSession(),
         ]);
         $this->client->setSession('');
+
         return true;
     }
 }

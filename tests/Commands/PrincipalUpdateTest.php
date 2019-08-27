@@ -23,7 +23,7 @@ class PrincipalUpdateTest extends TestCommandBase
     }
 
     /**
-     * Create a new Principal User
+     * Create a new Principal User.
      *
      * @return Principal
      */
@@ -49,7 +49,6 @@ class PrincipalUpdateTest extends TestCommandBase
         $command->setClient($this->client);
 
         $this->assertTrue($command->execute());
-
     }
 
     public function testUpdateGroup()
@@ -65,7 +64,7 @@ class PrincipalUpdateTest extends TestCommandBase
     }
 
     /**
-     * Create a new Principal Group
+     * Create a new Principal Group.
      *
      * @return Principal
      */

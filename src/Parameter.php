@@ -17,32 +17,35 @@ class Parameter implements ArrayableInterface
     protected $parameters = [];
 
     /**
-     * Returns a new Parameter instance
+     * Returns a new Parameter instance.
      *
      * @return Parameter
      */
     public static function instance()
     {
-        return new static;
+        return new static();
     }
 
     /**
-     * Add a parameter
+     * Add a parameter.
      *
      * @param string $parameter
-     * @param mixed $value
+     * @param mixed  $value
+     *
      * @return Parameter Fluent Interface
      */
     public function set($parameter, $value)
     {
         $this->parameters[SCT::toHyphen($parameter)] = VT::toString($value);
+
         return $this;
     }
 
     /**
-     * Remove a parameter
+     * Remove a parameter.
      *
      * @param string $parameter
+     *
      * @return Parameter Fluent Interface
      */
     public function remove($parameter)
@@ -52,11 +55,12 @@ class Parameter implements ArrayableInterface
         if (isset($this->parameters[$parameter])) {
             unset($this->parameters[$parameter]);
         }
+
         return $this;
     }
 
     /**
-     * Retrieves all not null attributes in an associative array
+     * Retrieves all not null attributes in an associative array.
      *
      * The keys in hash style: Ex: is-member
      * The values as string
